@@ -901,8 +901,9 @@
             return url + (url.includes('?') ? '&' : '?') + '__hdnea__=' + token;
         }
 
-        // iOS / Safari have no MSE but answer canPlayType() for m3u8 - those
-        // devices skip shaka entirely and let the browser play HLS itself
+        // Browsers that answer canPlayType() for m3u8 can play HLS themselves;
+        // Safari (iOS/macOS) is the main user of this path, since it can play
+        // the CDN's HLS feed in hardware even where shaka's MSE path struggles
         function prefersNativePlayback() {
             const video = document.getElementById('stream-video');
             return !!(video && video.canPlayType('application/x-mpegurl'));
@@ -970,8 +971,8 @@
             });
         }
 
-        async function startNativePlayback(run) {
-            const [cookie, chainUrl] = await Promise.all([fetchStreamCookie(), resolveChainUrl()]);
+        async function startNativePlayback(run, overrideUrl) {
+            const cookie = await fetchStreamCookie();
             if (run !== playbackRun) return false;
             streamCookie = cookie;
 
@@ -983,8 +984,11 @@
             }
 
             const candidates = [];
-            if (cookie) candidates.push(withToken(STREAM_CONFIG.hlsUrl));
-            if (chainUrl) candidates.push(chainUrl);
+            if (overrideUrl) {
+                candidates.push(withToken(overrideUrl));
+            } else if (cookie) {
+                candidates.push(withToken(STREAM_CONFIG.hlsUrl));
+            }
 
             for (const url of candidates) {
                 if (run !== playbackRun) return false;
@@ -995,17 +999,34 @@
                     return true;
                 }
             }
+
+            // last resort: the signed AVC feed. Its proxy hops are slow, so it
+            // only runs once the CDN playlist has already refused.
+            if (!overrideUrl) {
+                const chainUrl = await resolveChainUrl();
+                if (run !== playbackRun) return false;
+                if (chainUrl) {
+                    showPlayerStatus('Loading stream\u2026', 'loading');
+                    if (await tryNativeUrl(chainUrl, run)) {
+                        if (run !== playbackRun) return false;
+                        hidePlayerStatus();
+                        return true;
+                    }
+                }
+            }
             return false;
         }
 
-        async function startShakaPlayback(run) {
+        async function startShakaPlayback(run, overrideUrl) {
             showPlayerStatus('Loading stream\u2026', 'loading');
             streamCookie = await fetchStreamCookie();
             if (run !== playbackRun) return false;
 
-            const urls = streamCookie
-                ? [withToken(STREAM_CONFIG.dashUrl), withToken(STREAM_CONFIG.hlsUrl)]
-                : [STREAM_CONFIG.dashUrl, STREAM_CONFIG.hlsUrl];
+            const urls = overrideUrl
+                ? [withToken(overrideUrl)]
+                : (streamCookie
+                    ? [withToken(STREAM_CONFIG.dashUrl), withToken(STREAM_CONFIG.hlsUrl)]
+                    : [STREAM_CONFIG.dashUrl, STREAM_CONFIG.hlsUrl]);
 
             for (const url of urls) {
                 if (run !== playbackRun) return false;
@@ -1070,21 +1091,13 @@
 
         async function loadStream(manifestUrl) {
             if (!streamPlayer) {
-                if (prefersNativePlayback()) {
-                    const run = ++playbackRun;
-                    showPlayerStatus('Loading stream\u2026', 'loading');
-                    const ok = await tryNativeUrl(manifestUrl, run);
-                    if (run === playbackRun) {
-                        if (ok) hidePlayerStatus();
-                        else showPlayerStatus('Stream unavailable right now.', 'error');
-                    }
-                    return;
-                }
-                await startStream();
+                // no player yet: let the normal ladder pick the right engine
+                await startStream(manifestUrl);
                 return;
             }
 
             showPlayerStatus('Loading stream\u2026', 'loading');
+            lastLoadError = null;
             // refresh the token on every (re)load, it expires quickly
             streamCookie = await fetchStreamCookie();
             try {
@@ -1095,13 +1108,15 @@
                     if (playPromise && playPromise.catch) playPromise.catch(() => {});
                 }
                 hidePlayerStatus();
+                armAppleStallFallback(playbackRun);
             } catch (error) {
                 console.error('Stream load failed:', error);
-                showPlayerStatus('Stream unavailable right now.', 'error');
+                lastLoadError = error;
+                showPlayerStatus(describeStreamFailure(error), 'error');
             }
         }
 
-        async function startStream() {
+        async function startStream(overrideUrl) {
             const run = ++playbackRun;
             lastLoadError = null;
             startupMessage = null;
@@ -1109,7 +1124,8 @@
             armStarterWatchdog(run);
 
             const canUseShaka = !!window.MediaSource;
-            const canUseNative = prefersNativePlayback();
+            const canUseNative = prefersNativePlayback() &&
+                !(overrideUrl && /\.mpd(\?|#|$)/i.test(overrideUrl));
             // Apple gear plays this feed through shaka's own Clear Key
             // decryption; its native HLS claim usually points at a URL the CDN
             // answers with an error, so shaka runs first there and the
@@ -1118,23 +1134,23 @@
 
             let ok = false;
             if (shakaFirst) {
-                ok = await runShakaBranch(run);
+                ok = await runShakaBranch(run, overrideUrl);
             }
 
             if (!ok && run === playbackRun && canUseNative) {
                 // the browser's own HLS stack - how every iPhone plays m3u8
-                ok = await startNativePlayback(run);
+                ok = await startNativePlayback(run, overrideUrl);
             }
 
             if (!ok && run === playbackRun && !shakaFirst && canUseShaka) {
-                ok = await runShakaBranch(run);
+                ok = await runShakaBranch(run, overrideUrl);
             }
 
             if (run !== playbackRun) return;
             if (!ok) showPlayerStatus(startupMessage || describeStreamFailure(lastLoadError), 'error');
         }
 
-        async function runShakaBranch(run) {
+        async function runShakaBranch(run, overrideUrl) {
             if (typeof shaka === 'undefined') {
                 startupMessage = 'Player library failed to load.';
                 showPlayerStatus(startupMessage, 'error');
@@ -1142,7 +1158,7 @@
             }
             if (!(await ensureShakaPlayer(run))) return false;
             if (run !== playbackRun) return false;
-            return startShakaPlayback(run);
+            return startShakaPlayback(run, overrideUrl);
         }
 
         async function ensureShakaPlayer(run) {

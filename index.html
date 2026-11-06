@@ -1,1261 +1,1517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Sports Era Live — Every Match. One Arena.</title>
-<meta name="description" content="Sports Era Live: watch cricket, football, kabaddi, tennis and more in one ad-free arena. Searchable live channel grid, zero pop-ups, join us on Telegram @cricketvaanii_official.">
-<meta name="theme-color" content="#07090f">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYjhmZjJlIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzE5ZTA3ZiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHBhdGggZD0iTTMyIDIgNTggMTd2MzBMMzIgNjIgNiA0N1YxN0wzMiAyeiIgZmlsbD0iIzBkMTMyMiIgc3Ryb2tlPSJ1cmwoI2cpIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8cGF0aCBkPSJNMzUuNSA4IDIwIDM2aDEwLjVMMjYgNTYgNDQgMjZIMzNsOS0xOEgzNS41eiIgZmlsbD0idXJsKCNnKSIvPgo8L3N2Zz4K">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F5F7F8">
+<meta name="description" content="Sports Era Live - every match in one clean, ad-free arena. Live cricket, football, motorsport and more.">
+<meta name="referrer" content="no-referrer">
+<title>Sports Era Live - Every Match. One Arena.</title>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNjQgNjQiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iU3BvcnRzIEVyYSBsb2dvIj4KICA8ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9InNlTG9nbyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzAwRDFBMCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzIyQzNFNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxwYXRoIGQ9Ik0zMiAyIDU4IDE3djMwTDMyIDYyIDYgNDdWMTdMMzIgMnoiIGZpbGw9InVybCgjc2VMb2dvKSIvPgogIDxwYXRoIGQ9Ik0zNS41IDggMjAgMzZoMTAuNUwyNiA1NiA0NCAyNkgzM2w5LTE4SDM1LjV6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPg==">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- players: JW Player for HLS, Shaka Player (with UI) for DASH + ClearKey -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@5.2.4/dist/controls.css">
+<script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js" onerror="window.__jwFailed=true"></script>
+
 <style>
 /* ============================================================
-   SPORTS ERA — LIVE · Design System
-   No ads · No trackers · Pure sports
+   THEME — "Midnight Mint"
    ============================================================ */
 :root{
-  --bg:#07090f;
-  --bg-2:#0b0f1c;
-  --panel:#0e1324;
-  --panel-2:#121a32;
-  --panel-3:#182242;
-  --line:rgba(255,255,255,.08);
-  --line-strong:rgba(255,255,255,.16);
-  --text:#eef1fa;
-  --muted:#8a93b4;
-  --volt:#b8ff2e;
-  --emerald:#19e07f;
-  --gold:#ffd166;
-  --danger:#ff5c5c;
-  --accent:linear-gradient(120deg,var(--volt) 0%,var(--emerald) 100%);
-  --accent-soft:rgba(184,255,46,.12);
-  --shadow:0 18px 50px rgba(0,0,0,.55);
-  --radius:16px;
-  --font-display:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;
-  --font-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --nav-h:64px;
+  --bg:#F5F7F8; --surface:#FFFFFF; --surface-2:#F1F4F6; --surface-3:#E8EDF0;
+  --border:#E3E8EC; --border-2:#D3DBE1;
+  --text:#16222A; --text-dim:#40505B; --muted:#6B7B86;
+  --accent:#00B894; --accent-2:#22C3E6;
+  --accent-soft:rgba(0,184,148,.10); --accent-glow:rgba(0,184,148,.22);
+  --live:#E5484D; --live-soft:rgba(229,72,77,.10);
+  --soon:#E8A400; --soon-soft:rgba(232,164,0,.12);
+  --done:#6B7B86; --done-soft:rgba(107,123,134,.10);
+  --radius:16px; --radius-md:12px;
+  --shadow:0 4px 18px rgba(16,24,40,.06); --shadow-lg:0 24px 60px rgba(16,24,40,.14);
+  --font-d:'Space Grotesk','Inter',system-ui,sans-serif;
+  --font-b:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-html,body{height:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  background:
-    radial-gradient(1200px 700px at 80% -10%, rgba(25,224,127,.10), transparent 60%),
-    radial-gradient(900px 600px at -10% 30%, rgba(184,255,46,.07), transparent 55%),
-    var(--bg);
-  color:var(--text);
-  font-family:var(--font-body);
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  font:400 15px/1.5 var(--font-b); color:var(--text); background:var(--bg);
+  min-height:100vh; -webkit-font-smoothing:antialiased;
+  padding-bottom:40px; position:relative; overflow-x:hidden;
 }
-::selection{background:var(--volt);color:#0b0f1c}
-:focus-visible{outline:2px solid var(--volt);outline-offset:2px;border-radius:4px}
+body::before{
+  content:""; position:fixed; top:-30%; left:50%; transform:translateX(-50%);
+  width:900px; height:900px;
+  background:radial-gradient(circle,rgba(0,184,148,.10),transparent 65%);
+  pointer-events:none; z-index:0;
+}
+body::after{
+  content:""; position:fixed; bottom:-40%; right:-10%; width:700px; height:700px;
+  background:radial-gradient(circle,rgba(34,195,230,.08),transparent 70%);
+  pointer-events:none; z-index:0;
+}
 
-/* ---------- Ticker ---------- */
-.ticker{
-  position:relative;height:34px;overflow:hidden;
-  background:#05070d;border-bottom:1px solid var(--line);
-  display:flex;align-items:center;z-index:60;
-}
-.ticker-label{
-  flex:0 0 auto;display:flex;align-items:center;gap:8px;height:100%;
-  padding:0 14px;font:700 10px/1 var(--font-body);letter-spacing:.22em;
-  color:#05070d;background:var(--accent);text-transform:uppercase;
-}
-.ticker-viewport{overflow:hidden;white-space:nowrap;flex:1}
-.ticker-track{
-  display:inline-flex;gap:0;white-space:nowrap;
-  animation:tickerScroll 28s linear infinite;
-  will-change:transform;
-}
-.ticker-track span{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:0 26px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c9d1e8;
-}
-.ticker-track b{color:var(--volt);font-weight:700}
-@keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:var(--accent);text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+img{display:block;max-width:100%}
+[hidden]{display:none !important}
 
-/* ---------- Nav ---------- */
-.nav{
-  position:sticky;top:0;z-index:55;height:var(--nav-h);
-  display:flex;align-items:center;justify-content:space-between;gap:18px;
-  padding:0 clamp(14px,4vw,36px);
-  background:rgba(7,9,15,.72);
-  backdrop-filter:blur(14px) saturate(140%);
-  -webkit-backdrop-filter:blur(14px) saturate(140%);
-  border-bottom:1px solid var(--line);
-}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
-.brand-mark{width:38px;height:38px;flex:0 0 auto;filter:drop-shadow(0 4px 14px rgba(184,255,46,.35))}
-.brand-text{display:flex;flex-direction:column;line-height:1}
-.brand-text strong{
-  font-family:var(--font-display);font-weight:700;font-size:26px;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--text);
-}
-.brand-text strong em{
-  font-style:normal;background:var(--accent);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
-}
-.brand-text small{font-size:9px;letter-spacing:.34em;color:var(--muted);text-transform:uppercase;margin-top:3px}
-.nav-links{display:flex;align-items:center;gap:22px;list-style:none}
-.nav-links a{
-  color:var(--muted);text-decoration:none;font-size:12px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;transition:color .2s;
-}
-.nav-links a:hover{color:var(--text)}
-.nav-clock{
-  font-family:var(--font-display);font-size:18px;letter-spacing:.1em;color:var(--volt);
-  padding:6px 12px;border:1px solid rgba(184,255,46,.25);border-radius:10px;
-  background:var(--accent-soft);min-width:86px;text-align:center;
-}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer;
-  border:none;border-radius:999px;font-family:var(--font-body);font-weight:700;font-size:12px;
-  letter-spacing:.12em;text-transform:uppercase;padding:12px 20px;transition:transform .15s,box-shadow .2s,filter .2s;
-}
-.btn:active{transform:scale(.97)}
-.btn-primary{background:var(--accent);color:#05070d;box-shadow:0 10px 30px rgba(25,224,127,.35)}
-.btn-primary:hover{filter:brightness(1.08)}
-.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line-strong)}
-.btn-ghost:hover{border-color:var(--volt);color:var(--volt)}
-.btn svg{width:16px;height:16px;fill:currentColor}
-.nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:8px}
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container{max-width:1320px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+.view{display:none}
+.view.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* ---------- HERO ---------- */
-.hero{
-  position:relative;overflow:hidden;
-  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
-  gap:clamp(24px,4vw,48px);align-items:center;
-  padding:clamp(36px,6vw,72px) clamp(16px,5vw,56px) clamp(48px,6vw,80px);
-  min-height:calc(100vh - var(--nav-h) - 34px);
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:22px 0 20px;flex-wrap:wrap;
 }
-.hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
-.hero-orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
-.orb-1{width:480px;height:480px;background:radial-gradient(circle,#19e07f55,transparent 70%);top:-120px;right:-120px;animation:orbFloat1 14s ease-in-out infinite}
-.orb-2{width:380px;height:380px;background:radial-gradient(circle,#b8ff2e33,transparent 70%);bottom:-100px;left:-100px;animation:orbFloat2 17s ease-in-out infinite}
-@keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,60px)}}
-@keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(70px,-50px)}}
-.hero-pitch{
-  position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);
-  width:130%;max-width:1300px;opacity:.16;
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{
+  width:46px;height:46px;border-radius:14px;
+  background:linear-gradient(135deg,#E9FBF5,#E6F6FB);
+  display:grid;place-items:center;font-size:22px;
+  box-shadow:inset 0 0 0 1px rgba(0,184,148,.18); flex:none;
 }
-.grid-lines{
-  position:absolute;inset:0;opacity:.35;
-  background-image:
-    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 90% 80% at 50% 30%,#000 40%,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 30%,#000 40%,transparent 75%);
+.brand-text h1{
+  font:700 22px/1.1 var(--font-d); letter-spacing:-.01em;
+  background:linear-gradient(100deg,#16222A 20%,#00A382 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
 }
-.hero-copy{position:relative;z-index:1}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;
-  background:var(--accent-soft);border:1px solid rgba(184,255,46,.25);
-  font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--volt);
-  margin-bottom:22px;
-}
-.eyebrow .pulse{
-  width:8px;height:8px;border-radius:50%;background:var(--volt);
-  box-shadow:0 0 0 0 rgba(184,255,46,.7);animation:pulse 1.6s ease-out infinite;
-}
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(184,255,46,.7)}
-  100%{box-shadow:0 0 0 12px rgba(184,255,46,0)}
-}
-.hero h1{
-  font-family:var(--font-display);font-weight:800;text-transform:uppercase;
-  font-size:clamp(56px,9.2vw,124px);line-height:.92;letter-spacing:.01em;color:var(--text);
-}
-.hero h1 .stroke{
-  -webkit-text-stroke:2px var(--volt);color:transparent;
-  text-stroke:2px var(--volt);
-}
-.hero h1 .volt{background:var(--accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero p.lede{
-  margin:22px 0 30px;max-width:520px;font-size:17px;line-height:1.6;color:#c9d1e8;font-weight:400;
-}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.hero-ctas .btn{padding:16px 26px;font-size:13px}
-.hero-stats{
-  display:flex;gap:clamp(18px,3vw,36px);margin-top:36px;padding-top:26px;
-  border-top:1px solid var(--line);
-}
-.stat b{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--text);display:block;letter-spacing:.02em}
-.stat b i{font-style:normal;color:var(--volt)}
-.stat span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.brand-text p{font-size:12.5px;color:var(--muted);margin-top:2px;font-weight:500}
 
-/* Hero right: Live now stack */
-.live-stack{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px}
-.stack-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 4px 2px;
-}
-.stack-head h2{font-family:var(--font-display);font-size:18px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.stack-head a{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--volt);text-decoration:none}
-.stack-head a:hover{text-decoration:underline}
-.stack-card{
-  display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
-  padding:14px 16px;border-radius:var(--radius);
-  background:linear-gradient(160deg,var(--panel-2),var(--panel));
-  border:1px solid var(--line);
-  transition:transform .2s,border-color .2s,box-shadow .2s;
-  position:relative;overflow:hidden;
-}
-.stack-card::after{
-  content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;
-  background:radial-gradient(circle,rgba(184,255,46,.12),transparent 70%);
-}
-.stack-card:hover{transform:translateY(-3px);border-color:rgba(184,255,46,.35);box-shadow:var(--shadow)}
-.stack-logo{
-  width:56px;height:56px;border-radius:12px;flex:0 0 auto;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-display);font-weight:700;font-size:22px;color:#05070d;
-  background:linear-gradient(135deg,var(--lg-a,#b8ff2e),var(--lg-b,#19e07f));
-}
-.stack-info{min-width:0;flex:1}
-.stack-info b{display:block;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.stack-info small{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.header-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .live-pill{
-  flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;
-  font-size:9px;font-weight:800;letter-spacing:.22em;color:#05070d;
-  background:var(--volt);padding:5px 10px;border-radius:6px;
+  display:flex;align-items:center;gap:7px;
+  padding:7px 14px;border-radius:999px;
+  background:var(--live-soft);border:1px solid rgba(255,77,109,.25);
+  color:var(--live);font-size:12.5px;font-weight:600;
 }
-.live-pill i{width:6px;height:6px;border-radius:50%;background:#05070d;animation:pulse 1.2s infinite}
+.live-pill .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--live);
+  animation:pulse 1.3s infinite;
+}
+@keyframes pulse{50%{opacity:.3}}
+.clock{font-size:12.5px;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
+.join-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 16px;border-radius:999px;
+  background:linear-gradient(135deg,#00D1A0,#22C3E6);
+  color:#04201B;font-size:13px;font-weight:700;
+  transition:transform .18s ease,box-shadow .18s ease;
+  box-shadow:0 4px 16px var(--accent-glow);
+}
+.join-btn:hover{transform:translateY(-1px);box-shadow:0 6px 22px var(--accent-glow)}
+.join-btn svg{width:15px;height:15px}
 
-/* ---------- Sections ---------- */
-.section{padding:clamp(28px,4vw,48px) clamp(16px,5vw,56px)}
-.section-head{
-  display:flex;align-items:flex-end;justify-content:space-between;gap:18px;
-  margin-bottom:20px;flex-wrap:wrap;
+/* ============================================================
+   FILTERS
+   ============================================================ */
+.filters{
+  display:flex;flex-direction:column;gap:10px;
+  padding:4px 0 22px;border-bottom:1px solid var(--border);margin-bottom:24px;
 }
-.kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--volt);font-weight:700;display:flex;align-items:center;gap:10px}
-.kicker::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,var(--volt),transparent)}
-.section-head h2{
-  font-family:var(--font-display);font-weight:700;text-transform:uppercase;
-  font-size:clamp(30px,4.4vw,46px);line-height:1;letter-spacing:.02em;margin-top:8px;
+.filter-row{
+  display:flex;gap:8px;overflow-x:auto;padding:2px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
 }
-.result-count{font-size:12px;color:var(--muted);letter-spacing:.1em}
-.result-count b{color:var(--volt)}
+.filter-row::-webkit-scrollbar{display:none}
 
-/* Toolbar: search + filters + sort */
-.toolbar{
-  display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px;
-  position:sticky;top:calc(var(--nav-h) + 8px);z-index:20;
-  padding:10px;border-radius:var(--radius);
-  background:rgba(11,15,28,.78);backdrop-filter:blur(12px);
-  border:1px solid var(--line);
-}
-.search-box{
-  flex:1 1 260px;display:flex;align-items:center;gap:10px;
-  background:var(--panel);border:1px solid var(--line);border-radius:12px;
-  padding:0 14px;height:48px;transition:border-color .2s,box-shadow .2s;
-}
-.search-box:focus-within{border-color:var(--volt);box-shadow:0 0 0 3px rgba(184,255,46,.15)}
-.search-box svg{width:18px;height:18px;fill:var(--muted);flex:0 0 auto}
-.search-box input{
-  flex:1;height:100%;background:transparent;border:none;outline:none;color:var(--text);
-  font-size:15px;font-family:var(--font-body);
-}
-.search-box input::placeholder{color:#566080}
-.kbd{
-  font-size:10px;color:var(--muted);border:1px solid var(--line-strong);
-  border-radius:6px;padding:3px 7px;letter-spacing:.1em;
-}
-.pills{display:flex;gap:8px;flex-wrap:wrap}
 .pill{
-  height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line-strong);
-  background:transparent;color:var(--muted);font-size:11px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .18s;font-family:var(--font-body);
+  flex:none;display:inline-flex;align-items:center;gap:7px;
+  padding:9px 15px;border-radius:999px;
+  font-size:13.5px;font-weight:600;
+  color:var(--text-dim);background:var(--surface);
+  border:1px solid var(--border);transition:all .18s ease;white-space:nowrap;
 }
-.pill:hover{color:var(--text);border-color:var(--volt)}
-.pill.active{background:var(--accent);border-color:transparent;color:#05070d;box-shadow:0 8px 22px rgba(25,224,127,.3)}
-.select{
-  height:48px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
-  color:var(--text);padding:0 14px;font-size:13px;outline:none;cursor:pointer;font-family:var(--font-body);
+.pill:hover{color:var(--text);border-color:var(--border-2);background:var(--surface-2)}
+.pill.active{color:var(--accent);background:var(--accent-soft);border-color:var(--accent)}
+.pill .count{
+  font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;
+  background:var(--surface-3);color:var(--muted);
 }
-.icon-btn{
-  width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--panel);
-  color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;
-}
-.icon-btn:hover{color:var(--volt);border-color:var(--volt)}
-.icon-btn.on{color:#05070d;background:var(--gold);border-color:transparent}
-.icon-btn svg{width:20px;height:20px;fill:currentColor}
+.pill.active .count{background:rgba(0,229,176,.2);color:var(--accent)}
+.pill[data-tab="live"].active{color:var(--live);background:var(--live-soft);border-color:var(--live)}
+.pill[data-tab="live"].active .count{background:rgba(255,77,109,.2);color:var(--live)}
 
-/* Channel grid */
-.channel-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:14px;
+/* ============================================================
+   MATCH GRID
+   ============================================================ */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:16px;padding-bottom:48px;
 }
+
 .card{
-  position:relative;display:flex;flex-direction:column;gap:12px;text-decoration:none;
-  background:linear-gradient(165deg,var(--panel-2),var(--panel));
-  border:1px solid var(--line);border-radius:var(--radius);
-  padding:16px;overflow:hidden;cursor:pointer;
-  transition:transform .18s,border-color .18s,box-shadow .18s;
-  isolation:isolate;
+  display:flex;flex-direction:column;gap:14px;padding:18px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);
+  text-align:left;font:inherit;color:inherit;
+  transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease,background .2s ease;
+  cursor:pointer;position:relative;overflow:hidden;
 }
 .card::before{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:radial-gradient(420px 200px at 50% -10%,hsla(var(--hue,120),90%,60%,.18),transparent 65%);
-  opacity:.9;
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(0,184,148,.55),transparent);
+  opacity:0;transition:opacity .25s ease;
 }
-.card:hover{transform:translateY(-4px);border-color:hsla(var(--hue,120),90%,60%,.45);box-shadow:var(--shadow)}
-.card:active{transform:scale(.985)}
-.card-top{display:flex;align-items:center;gap:12px}
-.monogram{
-  width:52px;height:52px;border-radius:12px;flex:0 0 auto;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-display);font-weight:700;font-size:20px;color:#05070d;
-  background:linear-gradient(135deg,hsl(var(--hue,120),95%,68%),hsl(var(--hue,120),85%,45%));
-  box-shadow:0 6px 18px hsla(var(--hue,120),90%,55%,.35);
-  object-fit:cover;
+.card:hover{border-color:var(--border-2);transform:translateY(-3px);box-shadow:var(--shadow);background:var(--surface-2)}
+.card:hover::before{opacity:.7}
+.card.is-live::before{background:linear-gradient(90deg,transparent,rgba(229,72,77,.55),transparent);opacity:.9}
+.card.is-live{border-color:rgba(255,77,109,.25)}
+
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sport-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--muted);min-width:0;
 }
-img.monogram{object-fit:cover;background:#1a2138}
-.card-title{min-width:0;flex:1}
-.card-title b{
-  display:block;font-size:15px;font-weight:600;line-height:1.25;color:var(--text);
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+.sport-chip .icon{font-size:14px;flex:none}
+.sport-chip .name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.status{
+  flex:none;font-size:10.5px;font-weight:700;letter-spacing:.06em;
+  padding:4px 10px;border-radius:999px;text-transform:uppercase;
 }
-.card-title span{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:block;margin-top:5px}
-.fav-btn{
-  position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:10px;
-  border:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:all .15s;z-index:2;
+.status.live{color:var(--live);background:var(--live-soft);border:1px solid rgba(255,77,109,.3)}
+.status.soon{color:var(--soon);background:var(--soon-soft);border:1px solid rgba(255,176,32,.3)}
+.status.done{color:var(--done);background:var(--done-soft);border:1px solid rgba(110,126,148,.25)}
+
+.card-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:6px 0}
+.team{display:flex;flex-direction:column;align-items:center;gap:9px;min-width:0}
+.crest{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--surface-3);border:1px solid var(--border);
+  display:grid;place-items:center;overflow:hidden;position:relative;
+  font-weight:700;font-size:15px;color:var(--muted);flex:none;
 }
-.fav-btn svg{width:17px;height:17px;fill:currentColor}
-.fav-btn:hover{color:var(--gold);background:rgba(255,209,102,.1)}
-.fav-btn.on{color:var(--gold)}
+.crest img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-3);padding:4px}
+.team-name{
+  font-size:13px;font-weight:600;text-align:center;
+  max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.versus{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 4px}
+.kickoff-time{font:700 20px/1 var(--font-d);color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+.kickoff-date{font-size:11px;color:var(--muted);font-weight:500;white-space:nowrap}
+
 .card-foot{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding-top:12px;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;border-top:1px solid var(--border);font-size:12px;
 }
-.cat-tag{
-  font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#c9d1e8;
-  padding:5px 12px;border-radius:6px;border:1px solid var(--line-strong);
-  background:rgba(255,255,255,.03);
-}
-.watch-btn{
-  display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--volt);text-decoration:none;
-}
-.watch-btn svg{width:14px;height:14px;fill:var(--volt);transition:transform .18s}
-.card:hover .watch-btn svg{transform:translateX(4px)}
-.empty{
-  grid-column:1/-1;text-align:center;padding:64px 20px;color:var(--muted);
-  border:1px dashed var(--line-strong);border-radius:var(--radius);
-}
-.empty b{display:block;font-family:var(--font-display);font-size:26px;color:var(--text);letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase}
-
-/* Skeletons */
-.card.skeleton{pointer-events:none}
-.skel{
-  border-radius:10px;background:linear-gradient(100deg,#131a30 20%,#1c2544 40%,#131a30 60%);
-  background-size:200% 100%;animation:shimmer 1.4s infinite;
-}
-@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
-
-/* ---------- TELEGRAM CTA band ---------- */
-.join-band{
-  margin:0 clamp(16px,5vw,56px) clamp(28px,4vw,48px);
-  border-radius:calc(var(--radius) + 4px);
-  position:relative;overflow:hidden;
-  background:linear-gradient(120deg,#0d3b2e 0%,#0b2a3a 50%,#0e1324 100%);
-  border:1px solid rgba(25,224,127,.3);
-  padding:clamp(28px,4vw,44px);
-  display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;
-}
-.join-band::before{
-  content:"";position:absolute;width:340px;height:340px;border-radius:50%;
-  right:-120px;top:-120px;background:radial-gradient(circle,rgba(25,224,127,.35),transparent 70%);
-}
-.join-band h3{
-  font-family:var(--font-display);text-transform:uppercase;font-size:clamp(26px,4vw,40px);
-  line-height:1;position:relative;
-}
-.join-band h3 em{font-style:normal;color:var(--volt)}
-.join-band p{margin-top:10px;color:#9fe8c0;max-width:460px;font-size:14px;line-height:1.6;position:relative}
-.tg-btn{
-  position:relative;display:inline-flex;align-items:center;gap:12px;text-decoration:none;
-  background:#229ed9;color:#fff;padding:14px 22px;border-radius:14px;
-  font-weight:700;font-size:13px;letter-spacing:.06em;
-  box-shadow:0 14px 34px rgba(34,158,217,.4);transition:transform .18s,box-shadow .18s;
-}
-.tg-btn:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(34,158,217,.55)}
-.tg-btn svg{width:22px;height:22px;fill:#fff}
-.tg-btn small{display:block;font-size:9px;letter-spacing:.22em;opacity:.85;font-weight:600}
-
-/* ---------- Footer ---------- */
-.footer{
-  border-top:1px solid var(--line);padding:26px clamp(16px,5vw,56px) 40px;
-  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  color:var(--muted);font-size:12px;line-height:1.8;
-}
-.footer strong{color:var(--text);letter-spacing:.06em}
-.footer a{color:var(--volt);text-decoration:none}
-.footer a:hover{text-decoration:underline}
-.footer .fine{max-width:520px}
+.stream-count{color:var(--muted);font-weight:500}
+.stream-count.empty{color:var(--live)}
+.watch-cta{display:inline-flex;align-items:center;gap:4px;color:var(--accent);font-weight:700;font-size:12.5px;transition:gap .18s ease}
+.card:hover .watch-cta{gap:8px}
+.watch-cta .arrow{transition:transform .18s ease}
+.card:hover .watch-cta .arrow{transform:translateX(2px)}
 
 /* ============================================================
-   PLAYER MODE
+   PLAYER VIEW
    ============================================================ */
-.player-view{display:none;position:fixed;inset:0;z-index:80;background:var(--bg);display:none;flex-direction:column}
-body.player-mode .player-view{display:flex}
-body.player-mode header,body.player-mode main,body.player-mode .footer,body.player-mode .ticker{display:none}
-.player-bar{
-  display:flex;align-items:center;gap:14px;height:60px;padding:0 14px;
-  background:var(--bg-2);border-bottom:1px solid var(--line);flex:0 0 auto;
+.player-top{display:flex;align-items:center;gap:14px;padding:22px 0 20px;flex-wrap:wrap}
+.icon-btn{
+  width:44px;height:44px;border-radius:14px;
+  border:1px solid var(--border);background:var(--surface);
+  display:grid;place-items:center;font-size:18px;color:var(--text);
+  transition:all .18s ease;flex:none;
 }
-.back-btn{
-  display:inline-flex;align-items:center;gap:10px;background:var(--panel-2);
-  border:1px solid var(--line);color:var(--text);border-radius:10px;
-  height:40px;padding:0 16px;font-size:11px;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;cursor:pointer;text-decoration:none;font-family:var(--font-body);
-  transition:border-color .2s,color .2s;
-}
-.back-btn:hover{border-color:var(--volt);color:var(--volt)}
-.player-meta{min-width:0;flex:1;display:flex;align-items:center;gap:12px}
-.player-meta b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-.player-meta span{font-size:9px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;display:block}
-.player-actions{display:flex;gap:8px;align-items:center}
-.pa-btn{
-  width:40px;height:40px;border-radius:10px;border:1px solid var(--line);
-  background:var(--panel-2);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;
-}
-.pa-btn:hover{color:var(--volt);border-color:var(--volt)}
-.pa-btn svg{width:18px;height:18px;fill:currentColor}
-.player-stage{position:relative;flex:1;background:#000;min-height:0}
-.player-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
-.player-join{
-  flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:16px;
-  padding:10px 14px;background:#05070d;border-top:1px solid var(--line);flex-wrap:wrap;
-  font-size:11px;color:var(--muted);letter-spacing:.08em;
-}
-.player-join a{color:var(--volt);text-decoration:none;font-weight:700}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--surface-2)}
+.player-meta{flex:1;min-width:0}
+.player-title{font:700 clamp(19px,3.5vw,26px)/1.15 var(--font-d);letter-spacing:-.01em;overflow-wrap:anywhere}
+.player-sub{color:var(--muted);font-size:13px;margin-top:3px;font-weight:500}
 
-/* ---------- Telegram join popup ---------- */
-.tg-popup{
-  position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;
-  padding:20px;
+.screen{
+  position:relative;background:#0B1118;
+  border-radius:var(--radius);overflow:hidden;
+  aspect-ratio:16/9;width:100%;
+  max-width:min(980px, calc((100vh - 180px) * 16 / 9));
+  max-width:min(980px, calc((100dvh - 180px) * 16 / 9));
+  margin:0 auto;border:1px solid var(--border);box-shadow:var(--shadow-lg);
 }
-.tg-popup[hidden]{display:none}
-.tg-popup-backdrop{
-  position:absolute;inset:0;background:rgba(3,5,12,.72);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  opacity:0;transition:opacity .3s ease;
-}
-.tg-popup.in .tg-popup-backdrop{opacity:1}
-.tg-popup-card{
-  position:relative;width:100%;max-width:420px;text-align:center;
-  background:linear-gradient(160deg,var(--panel-2) 0%,var(--panel) 55%,#0b2a3a 100%);
-  border:1px solid rgba(34,158,217,.4);border-radius:calc(var(--radius) + 4px);
-  padding:34px 28px 26px;box-shadow:var(--shadow),0 0 80px rgba(34,158,217,.18) inset;
-  opacity:0;transform:translateY(18px) scale(.94);
-  transition:opacity .3s ease,transform .35s cubic-bezier(.2,1.4,.4,1);
-}
-.tg-popup.in .tg-popup-card{opacity:1;transform:none}
-.tg-popup-badge{
-  width:76px;height:76px;margin:0 auto 16px;border-radius:24px;
-  background:radial-gradient(circle at 30% 30%,#3ab8ec,#229ed9 60%,#1a7fb0);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 12px 32px rgba(34,158,217,.45),inset 0 1px 0 rgba(255,255,255,.35);
-}
-.tg-popup-badge svg{width:40px;height:40px;fill:#fff;margin-left:-2px}
-.tg-popup-kicker{
-  display:block;font-size:9px;font-weight:700;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--volt);margin-bottom:8px;
-}
-.tg-popup-card h3{
-  font-family:var(--font-display);text-transform:uppercase;line-height:.95;
-  font-size:clamp(34px,7vw,44px);letter-spacing:.02em;
-}
-.tg-popup-card h3 em{font-style:normal;color:transparent;background:var(--accent);-webkit-background-clip:text;background-clip:text}
-.tg-popup-card p{
-  margin:14px auto 0;color:#b8c4e0;font-size:13px;line-height:1.65;max-width:320px;
-}
-.tg-popup-card p b{color:#7fd4ff;font-weight:700}
-.tg-popup-actions{display:flex;flex-direction:column;gap:10px;margin-top:20px}
-.tg-join-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  background:#229ed9;color:#fff;text-decoration:none;font-weight:800;
-  font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-  padding:15px 20px;border-radius:12px;border:1px solid rgba(255,255,255,.18);
-  box-shadow:0 12px 30px rgba(34,158,217,.4);transition:transform .18s,box-shadow .18s,background .18s;
-}
-.tg-join-btn svg{width:20px;height:20px;fill:#fff}
-.tg-join-btn:hover{transform:translateY(-2px);background:#2bafe8;box-shadow:0 16px 38px rgba(34,158,217,.55)}
-.tg-join-btn:focus-visible,.tg-joined-btn:focus-visible{outline:2px solid var(--volt);outline-offset:2px}
-.tg-joined-btn{
-  background:transparent;color:var(--muted);border:1px solid var(--line-strong);
-  font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  padding:13px 20px;border-radius:12px;cursor:pointer;transition:color .18s,border-color .18s,background .18s;
-}
-.tg-joined-btn:hover{color:var(--volt);border-color:var(--volt);background:var(--accent-soft)}
-.tg-popup-note{
-  display:block;margin-top:16px;font-size:9px;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--muted);
-}
-@media (max-width:480px){
-  .tg-popup-card{padding:26px 18px 20px;border-radius:var(--radius)}
-  .tg-popup-badge{width:64px;height:64px;border-radius:18px}
-  .tg-popup-badge svg{width:34px;height:34px}
-}
-@media (prefers-reduced-motion:reduce){
-  .tg-popup-backdrop,.tg-popup-card{transition:none}
-}
-
-/* ---------- Telegram join popup ---------- end */
-
-/* Toast */
-.toast{
-  position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:100;
-  background:#131a30;border:1px solid var(--line-strong);color:var(--text);
-  padding:12px 20px;border-radius:12px;font-size:13px;opacity:0;pointer-events:none;
-  transition:opacity .25s,transform .25s;box-shadow:var(--shadow);
-}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-
-/* Reveal on scroll */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}}
-
-/* Error screen */
-.error-card{
-  max-width:520px;margin:80px auto;text-align:center;padding:40px 28px;
-  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-}
-.error-card h2{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.05em;font-size:28px;margin-bottom:12px}
-.error-card p{color:var(--muted);font-size:13px;line-height:1.7;word-break:break-word}
-.error-card .btn{margin-top:18px}
-
-/* ---------- Responsive ---------- */
-@media (max-width:1024px){
-  .hero{grid-template-columns:1fr;min-height:auto;padding-top:32px}
-  .live-stack{order:2}
-  .nav-clock{display:none}
-}
-@media (max-width:860px){
-  .nav-links,.nav .btn-primary{display:none}
-  .nav-toggle{display:block}
-  .nav.open .nav-links{
-    display:flex;position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;
-    align-items:flex-start;padding:18px 20px 22px;gap:16px;background:rgba(7,9,15,.97);
-    border-bottom:1px solid var(--line);backdrop-filter:blur(14px);z-index:54;
+@media (max-height:520px){
+  .screen{
+    max-width:min(980px, calc((100vh - 100px) * 16 / 9));
+    max-width:min(980px, calc((100dvh - 100px) * 16 / 9));
+    border-radius:12px;
   }
-  .toolbar{position:static}
-  .kbd{display:none}
-  .player-meta b{max-width:40vw}
+  .player-top{padding:12px 0 12px}
+  .player-title{font-size:16px}
+  .player-sub{display:none}
 }
-@media (max-width:560px){
-  .hero h1{font-size:clamp(46px,15vw,64px)}
-  .hero-ctas .btn{width:100%;justify-content:center}
-  .hero-stats{flex-wrap:wrap;gap:16px}
-  .channel-grid{grid-template-columns:1fr}
-  .join-band{flex-direction:column;align-items:flex-start}
-  .player-join{font-size:10px}
+
+.screen > #player-container{position:absolute;inset:0;background:#000;overflow:hidden}
+.screen > #player-container > .player-container{position:absolute;inset:0}
+.screen > #player-container > .player-container > .shaka-video-container{width:100%!important;height:100%!important}
+#player-container video{
+  width:100%;height:100%;object-fit:contain;background:#000;display:block;
 }
+#player-container video.mode-fill{object-fit:fill}
+#player-container video.mode-cover{object-fit:cover}
+
+#player-container:fullscreen{width:100%;height:100%;background:#000}
+#player-container:-webkit-full-screen{width:100%;height:100%;background:#000}
+
+#jw-root,#jw-root .jw-wrapper,#jw-root video{width:100%!important;height:100%!important}
+#jw-root{position:absolute;inset:0}
+
+/* ============================================================
+   STATUS TOAST
+   ============================================================ */
+#status{
+  position:absolute;top:12px;left:12px;
+  transform:translateY(-10px);
+  z-index:9998;
+  display:flex;align-items:center;gap:7px;
+  padding:6px 15px 6px 11px;
+  background:rgba(10,10,10,.92);
+  border:1px solid rgba(255,255,255,.07);
+  font-size:11.5px;font-weight:500;letter-spacing:.2px;
+  border-radius:24px;pointer-events:none;
+  opacity:0;transition:opacity .25s ease,transform .25s ease;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  white-space:nowrap;max-width:calc(100% - 24px);overflow:hidden;
+  box-shadow:0 2px 14px rgba(0,0,0,.45);
+  color:#c0c0c0;
+}
+#status.show{opacity:1;transform:translateY(0)}
+#status.ok .st-dot{background:#60a5fa}
+#status.live{color:#c8c8c8}
+#status.live .st-dot{background:#22d3a0;animation:dot-pulse 2s ease-in-out infinite}
+#status.warn{color:#fcd34d}
+#status.warn .st-dot{background:#fb923c;animation:dot-pulse 1s ease-in-out infinite}
+#status.err{color:#fca5a5}
+#status.err .st-dot{background:#f87171}
+.st-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+@keyframes dot-pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.35;transform:scale(.55)}
+}
+
+/* ============================================================
+   LOADING OVERLAY
+   ============================================================ */
+.loading-overlay{
+  position:absolute;inset:0;z-index:9997;
+  background:rgba(16,24,40,.45);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.loading-overlay svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-overlay p{color:#8f9baa;font-size:12.5px;letter-spacing:.5px;text-align:center;padding:0 24px;font-weight:500}
+
+/* ============================================================
+   STREAM LIST
+   ============================================================ */
+.section-title{
+  font:600 13px var(--font-b);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);max-width:980px;margin:28px auto 12px;
+}
+.streams{display:flex;flex-direction:column;gap:8px;max-width:980px;margin:0 auto}
+.stream-btn{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;padding:14px 16px;border-radius:var(--radius-md);
+  text-align:left;color:var(--text);
+  border:1px solid var(--border);background:var(--surface);
+  transition:all .18s ease;
+}
+.stream-btn:hover{border-color:var(--border-2);background:var(--surface-2)}
+.stream-btn.active{
+  border-color:var(--accent);background:var(--accent-soft);
+  box-shadow:0 0 0 1px var(--accent) inset;
+}
+.stream-btn .title{
+  font-weight:600;font-size:14px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.stream-btn .tags{display:flex;align-items:center;gap:8px;flex:none}
+.type-badge{
+  font-size:10px;font-weight:700;letter-spacing:.06em;
+  padding:3px 9px;border-radius:999px;
+  background:var(--surface-3);color:var(--text-dim);
+}
+.type-badge.dash{color:#8B9DFF;background:rgba(139,157,255,.12)}
+.type-badge.hls{color:#FFB020;background:rgba(255,176,32,.12)}
+.stream-btn.active .type-badge{background:rgba(0,229,176,.18);color:var(--accent)}
+
+/* ============================================================
+   STATES
+   ============================================================ */
+.state{
+  grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:80px 20px;gap:14px;text-align:center;
+}
+.state h3{font:600 18px var(--font-d);color:var(--text)}
+.state p{color:var(--muted);font-size:13.5px;max-width:400px}
+.err-icon{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--live-soft);color:var(--live);
+  display:grid;place-items:center;font-size:22px;
+}
+
+/* ============================================================
+   TELEGRAM POPUP (high-visibility, only buttons close it)
+   ============================================================ */
+#tgOverlay{
+  position:fixed;inset:0;z-index:2147483000;
+  display:none;align-items:center;justify-content:center;padding:20px;
+  background:rgba(9,16,22,.72);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  overscroll-behavior:contain;
+  cursor:default;
+}
+#tgOverlay.show{display:flex;animation:tgFade .35s ease}
+@keyframes tgFade{from{opacity:0}to{opacity:1}}
+
+#tgCard{
+  position:relative;width:100%;max-width:400px;text-align:center;
+  background:#fff;border-radius:24px;padding:34px 26px 26px;
+  border:1px solid #E3E8EC;
+  box-shadow:0 40px 90px rgba(9,16,22,.45),0 0 0 1px rgba(0,184,148,.12),0 -4px 0 0 #00B894 inset;
+  overflow:hidden;animation:tgPop .45s cubic-bezier(.2,1.35,.4,1);
+}
+@keyframes tgPop{from{transform:translateY(24px) scale(.94);opacity:0}to{transform:none;opacity:1}}
+#tgCard::before{
+  content:"";position:absolute;top:-40%;left:-20%;width:140%;height:90%;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,209,160,.16),transparent 65%);
+  pointer-events:none;
+}
+#tgCard > *{position:relative;z-index:1}
+
+#tgIcon{
+  width:78px;height:78px;margin:0 auto 14px;border-radius:26px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#2AABEE,#1E8FD0);
+  box-shadow:0 14px 30px rgba(42,171,238,.38),inset 0 1px 0 rgba(255,255,255,.4);
+}
+#tgIcon svg{width:40px;height:40px;fill:#fff;margin-left:-2px}
+
+#tgCard h2{
+  margin:6px 0 6px;font-family:'Space Grotesk','Inter',system-ui,sans-serif;
+  font-size:clamp(1.35rem,3.4vw,1.7rem);font-weight:700;letter-spacing:-.015em;color:#0E1B22;
+}
+#tgCard p{margin:0 0 22px;color:#5C6B76;font-size:14px;line-height:1.6}
+#tgCard p b{color:#00876B;font-weight:700}
+
+.tgBtns{display:flex;flex-direction:column;gap:10px}
+.tgBtn{
+  width:100%;height:52px;border-radius:14px;border:0;cursor:pointer;
+  font-family:'Inter',system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:.01em;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+}
+.tgBtn:active{transform:scale(.985)}
+.tgBtn svg{width:19px;height:19px;fill:currentColor}
+
+#joinNow{
+  background:linear-gradient(135deg,#00C39A,#1FB6DB);color:#04221C;
+  box-shadow:0 10px 26px rgba(0,184,148,.35);
+}
+#joinNow:hover{transform:translateY(-1px);box-shadow:0 14px 32px rgba(0,184,148,.45)}
+#joinedBtn{background:#F1F4F6;color:#43525C;border:1px solid #E3E8EC}
+#joinedBtn:hover{background:#E8EDF0;color:#16222A}
+.tgBtn:focus-visible{outline:3px solid rgba(0,184,148,.45);outline-offset:2px}
+
+.tgNote{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:16px 0 0;font-size:11.5px;color:#8A98A2;
+}
+.tgNote b{color:#00876B;font-weight:700}
+
+@media(max-width:480px){
+  #tgCard{padding:26px 18px 20px;border-radius:20px}
+  #tgIcon{width:64px;height:64px;border-radius:20px}
+  #tgIcon svg{width:32px;height:32px}
+  #tgCard p{font-size:13px}
+  .tgBtn{height:48px;font-size:14px}
+}
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:768px){
+  .container{padding:0 16px}
+  .header{padding:16px 0}
+  .brand-mark{width:40px;height:40px;font-size:19px;border-radius:12px}
+  .brand-text h1{font-size:19px}
+  .brand-text p{font-size:11.5px}
+  .header-actions{gap:8px}
+  .live-pill,.clock{font-size:11.5px;padding:6px 10px}
+  .join-btn{padding:7px 12px;font-size:12px}
+  .join-btn span{display:none}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+  .card{padding:16px}
+  .section-title{margin-top:22px}
+}
+@media(max-width:480px){
+  .grid{grid-template-columns:1fr}
+  .crest{width:50px;height:50px}
+  .kickoff-time{font-size:18px}
+  .team-name{font-size:12.5px}
+  .card-body{gap:8px}
+  #status{top:8px;left:8px;font-size:10.5px;padding:5px 12px 5px 9px}
+  .fit-pill{font-size:9px;padding:2px 5px}
+  .sp-btn{padding:0 5px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+/* ============================================================
+   SPORTS ERA â€” PAGE EXTRAS
+   ============================================================ */
+a.brand{text-decoration:none;color:inherit;min-width:0}
+.brand-mark svg{width:26px;height:26px;display:block}
+.brand-text h1{font-size:clamp(19px,2.4vw,22px)}
+.brand-text p{letter-spacing:.02em}
+
+/* player: sandboxed inline video page fills the screen box */
+.player-frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;display:block}
+.screen-msg{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;padding:24px;text-align:center;color:#C9D3DA;font-size:13.5px;line-height:1.6;
+}
+.screen-msg small{display:block;color:#8B9AA4;font-size:11.5px}
+
+/* stream list: reference layout, full width under the player */
+.streams{max-width:min(980px,100%);margin:0 auto}
+.stream-btn{background:var(--surface);box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.stream-btn.active{background:rgba(0,184,148,.07)}
+
+/* footer */
+.site-footer{
+  display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between;align-items:center;
+  max-width:1320px;margin:10px auto 0;padding:18px 20px 28px;
+  border-top:1px solid var(--border);
+  color:var(--muted);font-size:12px;line-height:1.6;position:relative;z-index:1;
+}
+.site-footer b{color:var(--text);font-weight:700}
+.site-footer a{color:var(--accent);text-decoration:none;font-weight:600}
+.site-footer a:hover{text-decoration:underline}
+@media(max-width:768px){.site-footer{padding:16px}}
+/* ============================================================
+   SHAKA UI OVERRIDES + FIT BUTTON (needed by shaka.ui)
+   ============================================================ */
+.sp-btn{
+  background:transparent!important;border:none!important;cursor:pointer!important;
+  padding:0 8px!important;opacity:.75;display:flex;align-items:center;justify-content:center;
+  height:100%;min-width:36px;transition:opacity .15s,color .15s;color:#16222A!important;
+}
+.sp-btn:hover{opacity:1}
+.sp-fit-btn{padding:0 7px!important;min-width:auto!important}
+.fit-pill{
+  font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 7px;border-radius:4px;line-height:1;
+  border:1.5px solid rgba(22,34,42,.28);color:rgba(22,34,42,.8);pointer-events:none;white-space:nowrap;
+}
+.shaka-controls-container button{color:#E9F1F5!important}
+.shaka-video-container{background-color:#000!important}
+.shaka-spinner-container{display:none!important}
+.shaka-overflow-menu,.shaka-settings-menu{
+  background-color:#fff!important;border:1px solid #E3E8EC!important;border-radius:12px!important;
+  box-shadow:0 16px 40px rgba(16,24,40,.18)!important;
+}
+.shaka-overflow-menu button,.shaka-settings-menu button{color:#16222A!important}
+.shaka-overflow-menu button:hover,.shaka-settings-menu button:hover{background-color:rgba(0,184,148,.10)!important}
+.shaka-settings-menu button.shaka-chosen-item{color:#00B894!important;background-color:rgba(0,184,148,.12)!important}
+.shaka-video-container .shaka-range-element{accent-color:#00B894}
 </style>
 </head>
+
 <body>
 
-<!-- ══════════ LIVE TICKER ══════════ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-label"><span style="width:7px;height:7px;border-radius:50%;background:#05070d;display:inline-block"></span>Live Now</div>
-  <div class="ticker-viewport"><div class="ticker-track" id="ticker-track"></div></div>
+<!-- ==================== TELEGRAM POPUP ==================== -->
+<div id="tgOverlay">
+  <div id="tgCard">
+    <div id="tgIcon">
+      <svg viewBox="0 0 24 24" fill="white" width="40" height="40" aria-hidden="true">
+        <path d="M23.05 2.1L19.6 21.3c-.26 1.15-.94 1.43-1.9.9l-5.26-3.88-2.54 2.45c-.28.28-.52.52-1.06.52l.38-5.4L19.9 5.8c.46-.4-.1-.63-.72-.23L7.5 13.03l-5.24-1.64c-1.14-.36-1.16-1.14.24-1.68L21.6.9c.95-.36 1.78.23 1.45 1.2z"/>
+      </svg>
+    </div>
+    <h2>Never Miss A Ball</h2>
+    <p>Join <b>@cricketvaanii_official</b> on Telegram for match links, backup streams and live alerts.</p>
+    <div class="tgBtns">
+      <button class="tgBtn" id="joinNow">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215z"/></svg>
+        Join Now
+      </button>
+      <button class="tgBtn" id="joinedBtn">Already Joined</button>
+    </div>
+    <p class="tgNote"><b>Free</b> Â· match alerts Â· no spam</p>
+  </div>
 </div>
 
-<!-- ══════════ NAV ══════════ -->
-<header class="nav" id="top">
-  <a class="brand" href="/Sports" aria-label="Sports Era — home">
-    <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="Sports Era logo">
-      <defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8ff2e"/><stop offset="1" stop-color="#19e07f"/></linearGradient></defs>
-      <path d="M32 2 58 17v30L32 62 6 47V17L32 2z" fill="#0d1322" stroke="url(#lg1)" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M35.5 8 20 36h10.5L26 56 44 26H33l9-18H35.5z" fill="url(#lg1)"/>
-    </svg>
-    <span class="brand-text"><strong>Sports <em>Era</em></strong><small>Every match · One arena</small></span>
-  </a>
+<div class="container">
 
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#live-grid">Live Channels</a></li>
-    <li><a href="#join">Join Telegram</a></li>
-    <li><a href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener noreferrer">@cricketvaanii_official</a></li>
-  </ul>
-
-  <div class="nav-clock" id="nav-clock" aria-label="Current time">00:00:00</div>
-
-  <a class="btn btn-primary" href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener noreferrer">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215z"/></svg>
-    Join Live
-  </a>
-
-  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-  </button>
-</header>
-
-<main>
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="grid-lines"></div>
-    <div class="hero-orb orb-1"></div>
-    <div class="hero-orb orb-2"></div>
-    <svg class="hero-pitch" viewBox="0 0 1200 260" fill="none">
-      <ellipse cx="600" cy="130" rx="560" ry="105" stroke="#19e07f" stroke-width="1.4" stroke-dasharray="10 12"/>
-      <ellipse cx="600" cy="130" rx="180" ry="70" stroke="#b8ff2e" stroke-width="1.2" stroke-dasharray="8 10"/>
-      <line x1="600" y1="0" x2="600" y2="260" stroke="#19e07f" stroke-width="1.2" stroke-dasharray="10 12"/>
-    </svg>
-  </div>
-
-  <div class="hero-copy">
-    <span class="eyebrow"><span class="pulse"></span>Season 2026 · Live Coverage</span>
-    <h1 id="hero-title">Every<br><span class="stroke">Match.</span><br><span class="volt">One Arena.</span></h1>
-    <p class="lede">Cricket, football, kabaddi, tennis &amp; more — all live in one lightning-fast, completely ad-free arena. Search, tap, watch. No pop-ups, no nonsense.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="#live-grid">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-        Watch Live Now
+  <!-- ==================== HUB VIEW ==================== -->
+  <section id="hubView" class="view active">
+    <header class="header">
+      <a class="brand" id="brandHome" href="./" aria-label="Sports Era - reload page" title="Reload page">
+        <span class="brand-mark"><svg viewBox="0 0 64 64" role="img" aria-label="Sports Era logo">
+  <defs><linearGradient id="seLogo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00D1A0"/><stop offset="1" stop-color="#22C3E6"/></linearGradient></defs>
+  <path d="M32 2 58 17v30L32 62 6 47V17L32 2z" fill="url(#seLogo)"/>
+  <path d="M35.5 8 20 36h10.5L26 56 44 26H33l9-18H35.5z" fill="#fff"/>
+</svg></span>
+        <span class="brand-text">
+          <h1>Sports Era</h1>
+          <p>Every match &middot; one arena</p>
+        </span>
       </a>
-      <a class="btn btn-ghost" href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215z"/></svg>
-        @cricketvaanii_official
-      </a>
+      <div class="header-actions">
+        <div class="live-pill"><span class="dot"></span> Live</div>
+        <div class="clock" id="clock">&mdash;</div>
+        <a class="join-btn" href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215z"/>
+          </svg>
+          <span>Join</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="filters">
+      <div class="filter-row" id="sports" role="tablist" aria-label="Sports"></div>
+      <div class="filter-row" id="tabs" role="tablist" aria-label="Status"></div>
     </div>
-    <div class="hero-stats" aria-label="Sports Era stats">
-      <div class="stat"><b><i>0</i> Ads</b><span>Ever</span></div>
-      <div class="stat"><b>HD<i>+</i></b><span>Quality</span></div>
-      <div class="stat"><b>24<i>/7</i></b><span>Coverage</span></div>
-      <div class="stat"><b>Free</b><span>Forever</span></div>
+
+    <main id="list" class="grid" aria-live="polite"></main>
+  </section>
+
+  <!-- ==================== PLAYER VIEW ==================== -->
+  <section id="playerView" class="view">
+    <header class="player-top">
+      <button class="icon-btn" id="backHub" aria-label="Back to matches">&larr;</button>
+      <div class="player-meta">
+        <h2 class="player-title" id="playerTitle">Sports Era Player</h2>
+        <p class="player-sub" id="playerSub"></p>
+      </div>
+    </header>
+
+    <div class="screen">
+      <div id="player-container"></div>
     </div>
-  </div>
 
-  <aside class="live-stack" aria-label="Trending live channels">
-    <div class="stack-head"><h2>Trending Now</h2><a href="#live-grid">View all →</a></div>
-    <div id="stack-list"><!-- filled by app.js --></div>
-  </aside>
-</section>
+    <h3 class="section-title">Available Streams</h3>
+    <div class="streams" id="streams"></div>
+  </section>
 
-<!-- ══════════ LIVE GRID ══════════ -->
-<section class="section" id="live-grid" aria-labelledby="grid-title">
-  <div class="section-head reveal">
-    <div>
-      <span class="kicker">Channel Grid</span>
-      <h2 id="grid-title">Choose Your<br>Battlefield</h2>
-    </div>
-    <p class="result-count"><b id="result-count">0</b> channels · <span id="fav-count">0</span> favourites</p>
-  </div>
+</div>
 
-  <div class="toolbar reveal" role="search">
-    <label class="search-box" for="search-input">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
-      <input type="text" id="search-input" placeholder="Search channels, sports, teams…" autocomplete="off" spellcheck="false" aria-label="Search channels">
-      <kbd class="kbd">/</kbd>
-    </label>
-    <div class="pills" id="category-pills" role="tablist" aria-label="Filter by sport"></div>
-    <select class="select" id="sort-select" aria-label="Sort channels">
-      <option value="default">Sort: Broadcast Order</option>
-      <option value="az">Sort: A → Z</option>
-      <option value="category">Sort: Category</option>
-    </select>
-    <button class="icon-btn" id="fav-toggle" aria-pressed="false" aria-label="Show favourites only" title="Show favourites only">
-      <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-    </button>
-  </div>
-
-  <div class="channel-grid" id="channel-grid" aria-live="polite"></div>
-</section>
-
-<!-- ══════════ TELEGRAM CTA ══════════ -->
-<aside class="join-band reveal" id="join" aria-label="Join Sports Era on Telegram">
-  <div>
-    <span class="kicker">Never Miss a Ball</span>
-    <h3>Kick-off Alerts.<br>Direct to <em>Telegram.</em></h3>
-    <p>Match start notifications, backup stream links, and line-up news — pushed to you the moment they're live. Join the Sports Era broadcast channel.</p>
-  </div>
-  <a class="tg-btn" href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener noreferrer" aria-label="Join @cricketvaanii_official on Telegram">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215z"/></svg>
-    <span>Join @cricketvaanii_official<small>Sports Era · Telegram</small></span>
-  </a>
-</aside>
-</main>
-
-<!-- ══════════ FOOTER ══════════ -->
-<footer class="footer">
-  <div class="fine">
-    <strong>SPORTS ERA LIVE</strong><br>
-    Sports Era does not host, store or re-broadcast any video content. All streams are embedded from their original source and belong to their respective rights holders.
-    <br><br>© <span id="yr"></span> Sports Era. All rights reserved.
-  </div>
-  <div>
-    <strong>Explore</strong><br>
-    <a href="#live-grid">Live Channels</a><br>
-    <a href="#join">Join Telegram</a><br>
-    <a href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener noreferrer">@cricketvaanii_official</a>
-  </div>
-  <div>
-    <strong>Fine Print</strong><br>
-    No ads · No trackers · No paywalls<br>
-    For personal, non-commercial viewing only.<br>
-    Report a broken feed: ping us on Telegram.
-  </div>
+<footer class="site-footer">
+  <span><b>Sports Era</b> &middot; Every match &middot; One arena</span>
+  <span>Sports Era does not host or re-broadcast any video. Streams are embedded from their original sources.</span>
+  <span>&copy; <span id="yr">2026</span> Sports Era &middot; <a href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener">@cricketvaanii_official</a></span>
 </footer>
 
-<!-- ══════════ PLAYER MODE ══════════ -->
-<div class="player-view" id="player-view" role="dialog" aria-modal="true" aria-labelledby="player-title">
-  <div class="player-bar">
-    <button class="back-btn" id="player-back" aria-label="Back to channel grid">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-      All Channels
-    </button>
-    <div class="player-meta">
-      <div style="min-width:0">
-        <b id="player-title">Loading…</b>
-        <span id="player-sub">Sports Era Live</span>
-      </div>
-    </div>
-    <div class="player-actions">
-      <button class="pa-btn" id="player-share" aria-label="Share this channel" title="Share">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-      </button>
-      <button class="pa-btn" id="player-fullscreen" aria-label="Toggle fullscreen" title="Fullscreen">
-        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-      </button>
-      <a class="pa-btn" href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener noreferrer" aria-label="Join on Telegram" title="Join on Telegram">
-        <svg viewBox="0 0 24 24"><path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215z"/></svg>
-      </a>
-    </div>
-  </div>
-  <div class="player-stage">
-    <iframe id="player-iframe" title="Sports Era Live player" allowfullscreen allow="encrypted-media; fullscreen; autoplay; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
-  </div>
-  <div class="player-join">
-    <span>⚡ Enjoying the feed?</span>
-    <a href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener noreferrer">Follow @cricketvaanii_official on Telegram</a>
-    <span>· Match alerts &amp; backups</span>
-  </div>
-</div>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<!-- ══════════ TELEGRAM JOIN POPUP (player) ══════════ -->
-<div class="tg-popup" id="tg-popup" role="dialog" aria-modal="true" aria-labelledby="tg-popup-title" aria-describedby="tg-popup-desc" hidden>
-  <div class="tg-popup-backdrop" data-tg-dismiss aria-hidden="true"></div>
-  <div class="tg-popup-card">
-    <div class="tg-popup-badge" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215z"/></svg>
-    </div>
-    <span class="tg-popup-kicker">Sports Era · Telegram</span>
-    <h3 id="tg-popup-title">Never Miss<br><em>A Ball.</em></h3>
-    <p id="tg-popup-desc">Kick-off alerts, backup stream links and line-ups — pushed straight to you the moment it's live. Join <b>@cricketvaanii_official</b>.</p>
-    <div class="tg-popup-actions">
-      <a class="tg-join-btn" id="tg-join-btn" href="https://t.me/cricketvaanii_official" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215z"/></svg>
-        Join Telegram
-      </a>
-      <button class="tg-joined-btn" id="tg-already-joined" type="button">Already Joined</button>
-    </div>
-    <small class="tg-popup-note">Free · Match alerts &amp; backups · No spam</small>
-  </div>
-</div>
-
-<noscript>
-  <div class="error-card">
-    <h2>JavaScript Required</h2>
-    <p>Sports Era Live needs JavaScript to load the channel grid. Please enable it and reload.</p>
-  </div>
-</noscript>
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@5.2.4/dist/shaka-player.ui.min.js"></script>
 
 <script>
+"use strict";
+
 /* ============================================================
-   SPORTS ERA LIVE — App Engine
-   Zero ads · Zero trackers · Pure sports
+   CONFIG — direct
    ============================================================ */
-'use strict';
+const DATA_URL = "https://sonujson-v6.pages.dev/Data/events/allinone.json";
+const LOG  = (...a) => console.log("[Sports Era]", ...a);
+const WARN = (...a) => console.warn("[Sports Era]", ...a);
+const ERR  = (...a) => console.error("[Sports Era]", ...a);
 
-/* ---------- Config ---------- */
-var JSON_URLS = [
-  'https://sonujson-v5.pages.dev/loura.json',
-  'https://sportlink-tv10.pages.dev/id.json'
-];
-var FETCH_TIMEOUT = 10000;
+const $ = id => document.getElementById(id);
 
-/* ---------- Helpers ---------- */
-function $(sel, ctx) { return (ctx || document).querySelector(sel); }
-function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
-function normalise(raw) {
-  if (Array.isArray(raw)) return raw;
-  if (!raw || typeof raw !== 'object') return [];
-  var keys = ['iframes', 'channels', 'data', 'items', 'entries'];
-  for (var i = 0; i < keys.length; i++) if (Array.isArray(raw[keys[i]])) return raw[keys[i]];
-  return [raw];
-}
-/* Drop entries that can never play: no id, no embed URL, or an embed
-   whose stream URL parameter is left empty (e.g. ".../player?url="). */
-function isUsable(ch) {
-  if (!ch || typeof ch !== 'object') return false;
-  var id = ch.id != null ? String(ch.id).trim() : '';
-  var src = ch.iframeSrc != null ? String(ch.iframeSrc).trim() : '';
-  if (!id || !src) return false;
-  if (/[?&](url|u)=$/i.test(src)) return false;
-  return true;
-}
-/* id.json ships without categories — guess one from the channel name so
-   the filter pills stay useful. Entries with a real category keep it. */
-var CATEGORY_RULES = [
-  [/cricket|cricbuzz|willow/i, 'Cricket'],
-  [/football|laliga|bundesliga|premier|uefa|fifa|soccer/i, 'Football'],
-  [/f1\b|formula|moto\s?gp|motogp|grand prix|racing|nascar/i, 'Motorsport'],
-  [/tennis/i, 'Tennis'],
-  [/golf/i, 'Golf'],
-  [/boxing|ufc|mma|wwe|fight|fight night/i, 'Combat Sports'],
-  [/nba|basketball/i, 'Basketball'],
-  [/kabaddi/i, 'Kabaddi'],
-  [/rugby/i, 'Rugby'],
-  [/euro\s?sport|bein sports|tnt sports|star sports|sony sports|sony ten|sky sports|fox sports|tsn|dd sports|fancode|fubo|action sports|arena sport|premier sports|sports select/i, 'MultiSport']
-];
-function inferCategory(name) {
-  var n = String(name || '');
-  for (var i = 0; i < CATEGORY_RULES.length; i++) {
-    if (CATEGORY_RULES[i][0].test(n)) return CATEGORY_RULES[i][1];
-  }
-  return 'Sports';
-}
-function prepare(list) {
-  return list.filter(isUsable).map(function (ch) {
-    var c = String(ch.category || '').trim();
-    if (!c || /^temporarily$/i.test(c)) c = inferCategory(ch.name);
-    ch.category = c;
-    return ch;
-  });
-}
-function fetchWithTimeout(url, ms) {
-  var ctrl = ('AbortController' in window) ? new AbortController() : null;
-  var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, ms);
-  var opts = { cache: 'no-store' };
-  if (ctrl) opts.signal = ctrl.signal;
-  return fetch(url, opts).then(
-    function (res) { clearTimeout(timer); return res; },
-    function (err) { clearTimeout(timer); throw err; }
-  );
-}
-function esc(s) {
-  return String(s == null ? '' : s)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
-function initials(name) {
-  var words = String(name || 'SE').replace(/[—–-]/g, ' ').trim().split(/\s+/).filter(Boolean);
-  var a = words[0] ? words[0][0] : 'S';
-  var b = words[1] ? words[1][0] : (words[0] ? words[0][1] || '' : 'E');
-  return (a + b).toUpperCase();
-}
-function hueFor(ch) {
-  if (ch.hue != null && !isNaN(+ch.hue)) return +ch.hue;
-  var s = String(ch.category || ch.name || 'se'), h = 0;
-  for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360;
-  return h;
-}
-function toast(msg) {
-  var t = $('#toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(t._timer);
-  t._timer = setTimeout(function () { t.classList.remove('show'); }, 3200);
-}
-
-/* ---------- State ---------- */
-var state = {
-  channels: [],
-  query: '',
-  category: 'All',
-  favOnly: false,
-  sort: 'default',
-  favorites: []
+const state = {
+  events: [],
+  sport: "All",
+  tab: "all",
+  currentEvent: null,
+  currentStreams: [],
+  currentIndex: 0
 };
-try { state.favorites = JSON.parse(localStorage.getItem('se_favorites') || '[]') || []; } catch (e) { state.favorites = []; }
-function saveFavorites() {
-  try { localStorage.setItem('se_favorites', JSON.stringify(state.favorites)); } catch (e) { /* private mode */ }
+
+/* ============================================================
+   TELEGRAM POPUP CONTROLLER
+   ============================================================ */
+const TG = (function(){
+  const overlay = document.getElementById("tgOverlay");
+  const JOIN_URL = "https://t.me/cricketvaanii_official";
+
+  function isOpen(){ return overlay.classList.contains("show"); }
+  function open(){
+    if(isOpen()) return;
+    overlay.classList.add("show");
+    try{ document.body.style.overflow = "hidden"; }catch(_){}
+    const btn = document.getElementById("joinNow");
+    if(btn) setTimeout(() => { try{ btn.focus(); }catch(_){} }, 60);
+  }
+  function close(){ overlay.classList.remove("show"); try{ document.body.style.overflow = ""; }catch(_){} }
+
+  /* Only the two buttons close the popup: no backdrop click, no Escape key. */
+  document.getElementById("joinNow").addEventListener("click", () => {
+    window.open(JOIN_URL, "_blank", "noopener");
+    close();
+  });
+  document.getElementById("joinedBtn").addEventListener("click", () => { close(); });
+
+  return { open, close, isOpen };
+})();
+
+/* ============================================================
+   TIER / DEVICE PROFILE
+   ============================================================ */
+function getTier(){
+  const mem = navigator.deviceMemory || 4;
+  const cores = navigator.hardwareConcurrency || 4;
+  const mob = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const net = conn ? (conn.effectiveType || "4g") : "4g";
+  if(!mob) return "high";
+  if(mem <= 1.5 || cores <= 2 || net === "slow-2g" || net === "2g") return "low";
+  if(mem <= 3 || cores <= 4) return "mid";
+  return "high";
 }
-function isFav(id) { return state.favorites.indexOf(String(id)) !== -1; }
-function toggleFav(id) {
-  id = String(id);
-  var i = state.favorites.indexOf(id);
-  if (i === -1) state.favorites.push(id); else state.favorites.splice(i, 1);
-  saveFavorites();
-  renderAll();
-  toast(isFav(id) ? 'Added to favourites' : 'Removed from favourites');
+const TIER = getTier();
+const PROF = {
+  low : { buf:4,  reBuf:1.5, behind:10, maxH:480,  maxBw:1000000, bwEst:400000  },
+  mid : { buf:7,  reBuf:1.5, behind:20, maxH:720,  maxBw:3000000, bwEst:1000000 },
+  high: { buf:10, reBuf:1.5, behind:25, maxH:1080, maxBw:0,       bwEst:2000000 }
+}[TIER];
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+function esc(v){
+  return String(v ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
 }
 
-/* Force autoplay on the embed URL: flip autoplay=0 → 1, or append
-   autoplay=1 when the embed doesn't declare one. Sites that don't
-   understand the parameter simply ignore it. */
-function withAutoplay(src) {
-  if (!src) return src;
-  try {
-    if (/([?&])autoplay=0(&|#|$)/i.test(src)) {
-      return src.replace(/([?&])autoplay=0(&|#|$)/i, '$1autoplay=1$2');
+function parseDate(value){
+  if(!value) return null;
+  let s = String(value).trim();
+  if(!s || s === "null" || s === "undefined") return null;
+
+  const isIST = /\bIST\b/i.test(s);
+  if(isIST) s = s.replace(/\s*IST\s*$/i, "").trim();
+
+  let m = s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})[T\s](\d{1,2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?\s*([+-]\d{2}:?\d{2}|Z)?$/);
+  if(m){
+    const [,y,mo,d,h,mi,se="00",off] = m;
+    let offset = "+0000";
+    if(off) offset = off === "Z" ? "+0000" : (off.includes(":") ? off.replace(":","") : off);
+    else if(isIST) offset = "+0530";
+    const iso = `${y}-${mo.padStart(2,"0")}-${d.padStart(2,"0")}T${h.padStart(2,"0")}:${mi}:${se}${offset.slice(0,3)}:${offset.slice(3)}`;
+    const dt = new Date(iso);
+    if(!isNaN(dt.getTime())) return dt;
+  }
+
+  const MONTHS = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+  m = s.match(/^(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})[,\s]+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?\s*([+-]\d{2}:?\d{2})?$/i);
+  if(m){
+    const [,d,mon,y,h,mi,se="00",ampm,off] = m;
+    const mi2 = MONTHS[mon.toLowerCase().slice(0,3)];
+    if(mi2 !== undefined){
+      let hour = parseInt(h,10);
+      if(ampm){
+        if(ampm.toUpperCase() === "PM" && hour < 12) hour += 12;
+        if(ampm.toUpperCase() === "AM" && hour === 12) hour = 0;
+      }
+      const offset = off ? (off.includes(":") ? off.replace(":","") : off) : (isIST ? "+0530" : "+0000");
+      const iso = `${y}-${String(mi2+1).padStart(2,"0")}-${d.padStart(2,"0")}T${String(hour).padStart(2,"0")}:${mi}:${se}${offset.slice(0,3)}:${offset.slice(3)}`;
+      const dt = new Date(iso);
+      if(!isNaN(dt.getTime())) return dt;
     }
-    if (!/([?&])autoplay=/i.test(src)) {
-      var sep = src.indexOf('?') === -1 ? '?' : (/[?&]$/.test(src) ? '' : '&');
-      return src + sep + 'autoplay=1';
+  }
+  const dt = new Date(s);
+  return isNaN(dt.getTime()) ? null : dt;
+}
+
+function getStatus(e){
+  const now = Date.now();
+  if(now < e.st) return "soon";
+  if(now <= e.en) return "live";
+  return "done";
+}
+
+function duration(ms){
+  const mins = Math.max(0, Math.round(ms / 60000));
+  const h = Math.floor(mins / 60), m = mins % 60;
+  if(h >= 24){ const d = Math.floor(h / 24); return `${d}d ${h % 24}h`; }
+  if(h > 0) return `${h}h ${m}m`;
+  return `${m}m`;
+}
+function timeString(d){ return d.toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}); }
+function dateString(d){ return d.toLocaleDateString([], {day:"numeric", month:"short"}); }
+
+function sportIcon(sport){
+  const s = String(sport).toLowerCase();
+  if(s.includes("cricket")) return "🏏";
+  if(s.includes("football") || s.includes("soccer")) return "⚽";
+  if(s.includes("wwe") || s.includes("wrestling")) return "🤼";
+  if(s.includes("basketball")) return "🏀";
+  if(s.includes("tennis")) return "🎾";
+  if(s.includes("baseball")) return "⚾";
+  if(s.includes("hockey")) return "🏒";
+  if(s.includes("motor") || s.includes("formula") || s.includes("motogp")) return "🏎️";
+  if(s.includes("boxing")) return "🥊";
+  if(s.includes("ufc") || s.includes("mma")) return "🥋";
+  if(s.includes("snooker") || s.includes("pool")) return "🎱";
+  if(s.includes("cycling")) return "🚴";
+  return "🏆";
+}
+
+function crest(url, name){
+  const initials = String(name || "")
+    .replace(/[^A-Za-z0-9 ]/g,"").split(/\s+/).filter(Boolean)
+    .map(x => x[0]).join("").slice(0,3).toUpperCase() || "?";
+  if(!url || url === "null") return `<div class="crest">${esc(initials)}</div>`;
+  return `<div class="crest"><span>${esc(initials)}</span><img src="${esc(url)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div>`;
+}
+
+/* ============================================================
+   FETCH & NORMALIZE
+   ============================================================ */
+async function fetchJson(url){
+  LOG("Fetching:", url);
+  const res = await fetch(url, {cache:"no-store"});
+  if(!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+  const text = await res.text();
+  if(text.trim().startsWith("<")) throw new Error("Server returned HTML instead of JSON.");
+  try{ return JSON.parse(text); }
+  catch(err){ throw new Error("Invalid JSON: " + err.message); }
+}
+
+function normalize(data){
+  const list = Array.isArray(data) ? data : (data && Array.isArray(data.events) ? data.events : null);
+  if(!list) throw new Error("Expected an events array.");
+  const events = [];
+  let ok = 0, skipped = 0;
+
+  list.forEach((item, index) => {
+    try{
+      const info = item.event || {};
+      const st = parseDate(info.startTimeIST) || parseDate(info.startTime) || parseDate(item.startTime);
+      if(!st){ skipped++; return; }
+      let en = parseDate(info.endTimeIST) || parseDate(info.endTime) || parseDate(item.endTime);
+      if(!en || en <= st) en = new Date(st.getTime() + 3 * 3600000);
+
+      const rawStreams = Array.isArray(item.streams) ? item.streams : [];
+      const seen = new Set();
+      const streams = [];
+      rawStreams.forEach((s, i) => {
+        if(!s) return;
+        const link = String(s.link || s.url || "").split("|")[0].trim();
+        if(!link || !/^https?:\/\//i.test(link)) return;
+        if(seen.has(link)) return;
+        const t = String(s.type || "").toLowerCase();
+        const isDash = t === "dash" || /\.mpd(\?|$)/i.test(link);
+        const isHls  = t === "hls"  || t === "0" || /\.m3u8(\?|$)/i.test(link);
+        if(!isDash && !isHls) return;
+        seen.add(link);
+        streams.push({
+          title: String(s.title || s.name || `Stream ${i+1}`).trim(),
+          link,
+          type: isDash ? "DASH" : "HLS",
+          key: String(s.api || s.key || "").trim()
+        });
+      });
+
+      events.push({
+        id: item.id ?? String(index),
+        sport: String(info.category || info.name || item.cat || "Other").trim(),
+        comp: String(info.type || info.name || item.title || "").trim(),
+        a: info.teamA || info.home || "",
+        b: info.teamB || info.away || "",
+        fa: info.teamAFlag || info.homeFlag || "",
+        fb: info.teamBFlag || info.awayFlag || "",
+        st, en, streams
+      });
+      ok++;
+    }catch(err){ ERR(`Event #${index} error:`, err); skipped++; }
+  });
+  LOG(`Normalize done — ok=${ok}, skipped=${skipped}`);
+  return events;
+}
+
+async function loadData(){
+  try{
+    const raw = await fetchJson(DATA_URL);
+    state.events = normalize(raw);
+    if(!state.events.length){
+      $("list").innerHTML = `<div class="state"><div class="err-icon">!</div><h3>No events found</h3><p>The feed loaded but no matches had a usable start time.</p></div>`;
+      return;
     }
-    return src;
-  } catch (e) {
-    return src;
+    renderHub();
+    if(!window.__booted){
+      window.__booted = true;
+      route();
+    }
+  }catch(err){
+    ERR("Load failed:", err);
+    $("list").innerHTML = `<div class="state"><div class="err-icon">!</div><h3>Could not load events</h3><p>${esc(err.message)}</p></div>`;
   }
 }
-/* ---------- Data loading ---------- */
-function loadChannels() {
-  var errors = [];
-  var chain = Promise.resolve([]);
-  JSON_URLS.forEach(function (url) {
-    chain = chain.then(function (acc) {
-      return fetchWithTimeout(url, FETCH_TIMEOUT).then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.text();
-      }).then(function (txt) {
-        try { return acc.concat(normalise(JSON.parse(txt))); }
-        catch (e) { throw new Error('Invalid JSON from ' + url); }
-      }).catch(function (err) {
-        errors.push(url + ' → ' + ((err && err.message) || err));
-        return acc;
-      });
+
+/* ============================================================
+   HUB RENDERING
+   ============================================================ */
+function eventCard(e){
+  const status = getStatus(e);
+  const now = Date.now();
+  const isLive = status === "live";
+  let statusClass = "", statusText = "";
+  if(status === "live"){ statusClass = "live"; statusText = "Live"; }
+  else if(status === "soon"){ statusClass = "soon"; statusText = `in ${duration(e.st - now)}`; }
+  else { statusClass = "done"; statusText = "Finished"; }
+  const n = e.streams.length;
+  const streamInfo = n === 0 ? `<span class="stream-count empty">No streams</span>` : `<span class="stream-count">${n} stream${n > 1 ? "s" : ""}</span>`;
+  const sameTeam = !e.b || e.a === e.b;
+  const sideA = `<div class="team">${crest(e.fa, e.a || e.comp)}<div class="team-name">${esc(e.a || e.comp || "TBD")}</div></div>`;
+  const sideB = sameTeam ? `<div class="team"></div>` : `<div class="team">${crest(e.fb, e.b)}<div class="team-name">${esc(e.b)}</div></div>`;
+  return `
+    <button class="card ${isLive ? "is-live" : ""}" data-watch-event="${esc(e.id)}" type="button" aria-label="${esc(e.a)} vs ${esc(e.b || "TBD")}">
+      <div class="card-top">
+        <span class="sport-chip"><span class="icon">${sportIcon(e.sport)}</span><span class="name">${esc(e.sport)}${e.comp ? " · " + esc(e.comp) : ""}</span></span>
+        <span class="status ${statusClass}">${statusText}</span>
+      </div>
+      <div class="card-body">
+        ${sideA}
+        <div class="versus"><div class="kickoff-time">${timeString(e.st)}</div><div class="kickoff-date">${dateString(e.st)} · IST</div></div>
+        ${sideB}
+      </div>
+      <div class="card-foot">${streamInfo}<span class="watch-cta">Watch <span class="arrow">→</span></span></div>
+    </button>
+  `;
+}
+
+function renderHub(){
+  const counts = {live:0, soon:0, done:0};
+  state.events.forEach(e => counts[getStatus(e)]++);
+  const sports = ["All", ...new Set(state.events.map(e => e.sport).filter(Boolean))];
+  $("sports").innerHTML = sports.map(s => {
+    const n = s === "All" ? state.events.length : state.events.filter(e => e.sport === s).length;
+    return `<button class="pill ${state.sport === s ? "active" : ""}" data-sport="${esc(s)}" role="tab">${s === "All" ? "🏆" : sportIcon(s)} ${esc(s)}<span class="count">${n}</span></button>`;
+  }).join("");
+  const tabs = [["all","All",state.events.length],["live","Live",counts.live],["soon","Upcoming",counts.soon]];
+  $("tabs").innerHTML = tabs.map(([key,label,n]) =>
+    `<button class="pill ${state.tab === key ? "active" : ""}" data-tab="${key}" role="tab">${key === "live" ? "🔴" : key === "soon" ? "📅" : "✅"} ${label}<span class="count">${n}</span></button>`
+  ).join("");
+  const rows = state.events
+    .filter(e => (state.tab === "all" || getStatus(e) === state.tab) && (state.sport === "All" || e.sport === state.sport))
+    .sort((a, b) => {
+      const order = {live:0, soon:1, done:2};
+      const sa = order[getStatus(a)] ?? 3, sb = order[getStatus(b)] ?? 3;
+      if(sa !== sb) return sa - sb;
+      return a.st - b.st;
     });
-  });
-  return chain.then(function (combined) {
-    var usable = prepare(combined);
-    if (usable.length) {
-      if (errors.length) toast('One channel source failed — showing partial list');
-      return usable;
-    }
-    throw new Error(errors.join('  |  ') || 'No channels available');
-  });
-}
-function dedupe(list) {
-  var seen = {}, out = [];
-  list.forEach(function (ch) {
-    var key = String((ch && (ch.id != null ? ch.id : ch.name)) || '').trim();
-    if (!key || seen[key]) return;
-    seen[key] = true;
-    out.push(ch);
-  });
-  return out;
+  $("list").innerHTML = rows.length ? rows.map(eventCard).join("") : `<div class="state"><h3>No matches found</h3><p>Try a different filter.</p></div>`;
+  $("clock").textContent = new Date().toLocaleString([], {day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"}) + " IST";
 }
 
-/* ---------- Filtering ---------- */
-function visibleChannels() {
-  var q = state.query.trim().toLowerCase();
-  var list = state.channels.filter(function (c) {
-    if (state.category !== 'All' && String(c.category || 'Other') !== state.category) return false;
-    if (state.favOnly && !isFav(c.id != null ? c.id : c.name)) return false;
-    if (!q) return true;
-    var hay = [c.name, c.category, c.id].join(' ').toLowerCase();
-    return hay.indexOf(q) !== -1;
-  });
-  if (state.sort === 'az') list = list.slice().sort(function (a, b) { return String(a.name || '').localeCompare(String(b.name || '')); });
-  else if (state.sort === 'category') list = list.slice().sort(function (a, b) { return String(a.category || '').localeCompare(String(b.category || '')) || String(a.name || '').localeCompare(String(b.name || '')); });
-  return list;
+/* ============================================================
+   ROUTER — opens player directly, no popup gate
+   ============================================================ */
+function route(){
+  const raw = location.hash.replace(/^#\/?/, "");
+  const [path, qs] = raw.split("?");
+  const params = new URLSearchParams(qs || "");
+  if(path === "watch") openPlayer(params.get("id"), Number(params.get("stream") || 0));
+  else showHub();
 }
 
-/* ---------- Rendering ---------- */
-function renderPills() {
-  var cats = ['All'];
-  state.channels.forEach(function (c) {
-    var cat = String(c.category || 'Other');
-    if (cats.indexOf(cat) === -1) cats.push(cat);
-  });
-  $('#category-pills').innerHTML = cats.map(function (cat) {
-    var active = cat === state.category ? ' active' : '';
-    return '<button class="pill' + active + '" role="tab" aria-selected="' + (cat === state.category) + '" data-cat="' + esc(cat) + '">' + esc(cat) + '</button>';
-  }).join('');
+function showHub(){
+  resetTgPopup();
+  $("player-container").innerHTML = "";
+  state.currentEvent = null;
+  state.currentStreams = [];
+  $("playerView").classList.remove("active");
+  $("hubView").classList.add("active");
+  window.scrollTo(0, 0);
 }
-function cardHTML(ch) {
-  var id = ch.id != null ? ch.id : ch.name;
-  var hue = hueFor(ch);
-  var logo = ch.logourl
-    ? '<img class="monogram" src="' + esc(ch.logourl) + '" alt="" loading="lazy" onerror="this.onerror=null;this.outerHTML=\'<div class=&quot;monogram&quot;>' + esc(initials(ch.name)) + '</div>\'">'
-    : '<div class="monogram" aria-hidden="true">' + esc(initials(ch.name)) + '</div>';
-  var fav = isFav(id);
-  var catLine = esc(ch.category || 'Sports');
-  return '' +
-    '<article class="card" role="button" tabindex="0" data-id="' + esc(id) + '" style="--hue:' + hue + '" aria-label="Watch ' + esc(ch.name) + '">' +
-      '<button class="fav-btn' + (fav ? ' on' : '') + '" data-fav="' + esc(id) + '" aria-pressed="' + fav + '" aria-label="Toggle favourite for ' + esc(ch.name) + '" title="Favourite">' +
-        '<svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>' +
-      '</button>' +
-      '<div class="card-top">' + logo +
-        '<div class="card-title"><b>' + esc(ch.name || 'Unnamed Channel') + '</b><span>' + catLine + '</span></div>' +
-      '</div>' +
-      '<div class="card-foot">' +
-        '<span class="cat-tag">' + esc(ch.category || 'Sports') + '</span>' +
-        '<span class="watch-btn">Watch Live<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>' +
-      '</div>' +
-    '</article>';
+
+/* ============================================================
+   PLAYER HELPERS (toast, ClearKey, loading veil)
+   ============================================================ */
+function toast(msg, type, dur){
+  const el = $("status");
+  if(!el) return;
+  el.innerHTML = `<span class="st-dot"></span><span>${esc(msg)}</span>`;
+  el.className = "show " + (type || "ok");
+  clearTimeout(el.__tmr);
+  if(dur !== 0){
+    el.__tmr = setTimeout(() => { el.className = el.className.replace("show","").trim(); }, dur || 4000);
+  }
 }
-function renderStack() {
-  var featured = state.channels.slice(0, 4);
-  $('#stack-list').innerHTML = featured.map(function (ch) {
-    var id = ch.id != null ? ch.id : ch.name;
-    var hue = hueFor(ch);
-    var a = 'hsl(' + hue + ',95%,68%)', b = 'hsl(' + hue + ',85%,45%)';
-    return '' +
-      '<a class="stack-card" href="?id=' + encodeURIComponent(id) + '" data-id="' + esc(id) + '">' +
-        '<div class="stack-logo" style="--lg-a:' + a + ';--lg-b:' + b + '">' + esc(initials(ch.name)) + '</div>' +
-        '<div class="stack-info"><b>' + esc(ch.name) + '</b><small>' + esc(ch.category || 'Sports') + '</small></div>' +
-        '<span class="live-pill"><i></i>Live</span>' +
-      '</a>';
-  }).join('');
+
+/* ClearKey pairs look like "kid:key" (hex, optional 0x). */
+function getClearKey(record){
+  const raw = String(record && record.key || "").trim();
+  if(!raw || !raw.includes(":")) return null;
+  const parts = raw.split(":");
+  if(parts.length < 2) return null;
+  const kid = parts.shift().trim().replace(/^0x/i,"").toLowerCase();
+  const key = parts.join(":").trim().replace(/^0x/i,"").toLowerCase();
+  if(!/^[0-9a-f]+$/.test(kid) || !/^[0-9a-f]+$/.test(key)) return null;
+  return {keyId: kid, key};
 }
-function renderTicker() {
-  var names = state.channels.slice(0, 8).map(function (c) { return String(c.name || 'Live').split('—')[0].trim(); });
-  if (!names.length) names = ['Sports Era Live'];
-  var seq = names.map(function (n) { return '<span><b>● LIVE</b>' + esc(n) + '</span>'; }).join('');
-  $('#ticker-track').innerHTML = seq + seq; // duplicated for a seamless marquee loop
+
+function makeLoadingEl(){
+  const el = document.createElement("div");
+  el.className = "loading-overlay";
+  el.innerHTML = `<svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#1a1a1a" stroke-width="4"/><path d="M20 4a16 16 0 0 1 16 16" stroke="#00B894" stroke-width="4" stroke-linecap="round"/></svg><p>Loading stream...</p>`;
+  return el;
 }
-function renderGrid() {
-  var grid = $('#channel-grid');
-  var list = visibleChannels();
-  $('#result-count').textContent = list.length;
-  $('#fav-count').textContent = state.favorites.length;
-  if (!list.length) {
-    grid.innerHTML = '<div class="empty"><b>No channels found</b>Try another search term or clear the favourites filter.<br><br><button class="btn btn-ghost" id="empty-reset">Reset Filters</button></div>';
-    var reset = $('#empty-reset');
-    if (reset) reset.addEventListener('click', resetFilters);
+
+/* one popup per stream: reset when a stream is (re)mounted, never on recover/buffer */
+let tgPopupDone = false;
+
+function resetTgPopup(){ tgPopupDone = false; }
+
+function showPlayerTGPopup(){
+  if(tgPopupDone) return;
+  tgPopupDone = true;
+  setTimeout(() => { if(!TG.isOpen()) TG.open(); }, 1500);
+}
+
+/* ============================================================
+   PLAYER STATE
+   ============================================================ */
+let player = null;
+let overlay = null;
+let jwInstance = null;
+let playbackToken = 0;
+let sessionStart = 0;
+let thermalTimer = null;
+let thermalApplied = false;
+let restrictionsRelaxed = false;
+let refreshing = false;
+let retries = 0;
+let edgeTried = false;
+let started = false;
+let stallTmr = null;
+let currentStreamInfo = null;
+let jwFitMode = 0;
+/* ============================================================
+   OPEN PLAYER
+   ============================================================ */
+async function openPlayer(id, index){
+  $("hubView").classList.remove("active");
+  $("playerView").classList.add("active");
+  window.scrollTo(0, 0);
+
+  const event = state.events.find(e => String(e.id) === String(id));
+  if(!event){
+    state.currentEvent = null;
+    state.currentStreams = [];
+    $("playerTitle").textContent = "Match not found";
+    $("playerSub").textContent = "";
+    $("streams").innerHTML = "";
+    $("player-container").innerHTML = `<div class="screen-msg">This match is no longer available.</div>`;
     return;
   }
-  grid.innerHTML = list.map(cardHTML).join('');
-}
-function renderSkeletons() {
-  var grid = $('#channel-grid');
-  grid.innerHTML = new Array(8).fill(0).map(function () {
-    return '<div class="card skeleton" aria-hidden="true">' +
-      '<div class="card-top"><div class="skel" style="width:52px;height:52px"></div>' +
-      '<div style="flex:1"><div class="skel" style="height:16px;width:80%;margin-bottom:8px"></div><div class="skel" style="height:10px;width:40%"></div></div></div>' +
-      '<div class="skel" style="height:30px;width:60%"></div>' +
-    '</div>';
-  }).join('');
-}
-function renderAll() {
-  renderPills();
-  renderGrid();
-}
-function resetFilters() {
-  state.query = ''; state.category = 'All'; state.favOnly = false; state.sort = 'default';
-  $('#search-input').value = '';
-  $('#sort-select').value = 'default';
-  $('#fav-toggle').classList.remove('on');
-  $('#fav-toggle').setAttribute('aria-pressed', 'false');
-  renderAll();
+
+  state.currentEvent = event;
+  state.currentStreams = event.streams || [];
+  state.currentIndex = index;
+
+
+  $("playerTitle").textContent = event.a && event.b && event.a !== event.b ? `${event.a} vs ${event.b}` : (event.comp || event.a || "Sports Era Player");
+  $("playerSub").textContent = [event.sport, event.comp].filter(Boolean).join(" · ");
+
+  renderPlayerStreams(index);
+
+  const record = state.currentStreams[index];
+  if(record) await playRecord(record, index);
+  else $("player-container").innerHTML = `<div class="screen-msg">No playable streams for this match.</div>`;
 }
 
-/* ---------- Telegram join popup ---------- */
-/* Shown on every stream open. "Already Joined" only dismisses it for the current view. */
-function showTgPopup() {
-  var pop = $('#tg-popup');
-  if (!pop) return;
-  pop.hidden = false;
-  requestAnimationFrame(function () { pop.classList.add('in'); });
-  var btn = $('#tg-join-btn');
-  if (btn) btn.focus();
-}
-function hideTgPopup() {
-  var pop = $('#tg-popup');
-  if (!pop) return;
-  pop.classList.remove('in');
-  pop.hidden = true;
-}
-function tgPopupVisible() {
-  var pop = $('#tg-popup');
-  return !!pop && !pop.hidden;
+function shakaErrStr(e){
+  if(!e) return "Playback Error";
+  const cat = {1:"Network",2:"Text",3:"Media",4:"Manifest",5:"Stream",6:"DRM",7:"Player"};
+  let s = (cat[e.category] || "Error") + " " + e.category + ":" + e.code;
+  if(e.data && e.data[0] && typeof e.data[0] === "string") s += " - " + e.data[0].slice(0,72);
+  return s;
 }
 
-/* ---------- Player mode ---------- */
-function findChannel(id) {
-  id = String(id);
-  return state.channels.find(function (c) { return String(c.id != null ? c.id : c.name) === id; }) || null;
-}
-function enterPlayerMode(id, push) {
-  var ch = findChannel(id);
-  if (!ch) { exitPlayerMode(true); toast('Channel not found — showing grid'); return; }
-  $('#player-title').textContent = ch.name || 'Live';
-  $('#player-sub').textContent = (ch.category || 'Sports') + ' · Sports Era Live';
-  var iframe = $('#player-iframe');
-  iframe.src = withAutoplay(ch.iframeSrc || '');
-  document.body.classList.add('player-mode');
-  document.title = (ch.name || 'Live') + ' — Sports Era Live';
-  showTgPopup();
-  if (push !== false) {
-    try { history.pushState({ player: id }, '', '?id=' + encodeURIComponent(id)); } catch (e) { /* file:// */ }
-  }
-}
-function exitPlayerMode(replace) {
-  $('#player-iframe').src = 'about:blank';
-  hideTgPopup();
-  document.body.classList.remove('player-mode');
-  document.title = 'Sports Era Live — Every Match. One Arena.';
-  if (replace) {
-    try { history.replaceState({}, '', window.location.pathname); } catch (e) { /* ignore */ }
-  }
-}
-
-/* ---------- Share / fullscreen ---------- */
-function shareCurrent() {
-  var url = window.location.href;
-  var title = $('#player-title').textContent || 'Sports Era Live';
-  if (navigator.share) {
-    navigator.share({ title: title, text: 'Watch ' + title + ' on Sports Era Live', url: url }).catch(function () {});
-  } else if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(function () { toast('Link copied to clipboard'); }, function () { toast('Could not copy link'); });
-  } else {
-    toast('Copy this URL: ' + url);
-  }
-}
-function toggleFullscreen() {
-  var stage = $('.player-stage');
-  if (document.fullscreenElement) { document.exitFullscreen().catch(function () {}); return; }
-  var req = stage.requestFullscreen || stage.webkitRequestFullscreen || stage.msRequestFullscreen;
-  if (req) req.call(stage).catch(function () { toast('Fullscreen not supported here'); });
-}
-
-/* ---------- Events ---------- */
-function bindEvents() {
-  // Search
-  var search = $('#search-input');
-  var debounce;
-  search.addEventListener('input', function (e) {
-    clearTimeout(debounce);
-    debounce = setTimeout(function () { state.query = e.target.value; renderGrid(); }, 120);
+function ratioLabel(w,h){
+  if(!w || !h) return "-";
+  const gcd = (a,b) => b ? gcd(b,a%b) : a;
+  const g = gcd(w,h) || 1;
+  const rw = w/g, rh = h/g;
+  const named = {"16:9":16/9,"4:3":4/3,"21:9":21/9,"1:1":1,"9:16":9/16,"3:2":3/2,"5:4":5/4,"2:1":2};
+  const real = w/h;
+  let best = null, bestD = .02;
+  Object.keys(named).forEach(k => {
+    const d = Math.abs(named[k] - real);
+    if(d < bestD){ bestD = d; best = k; }
   });
-  // "/" focuses search
-  document.addEventListener('keydown', function (e) {
-    if (e.key === '/' && !/input|textarea|select/i.test((e.target.tagName || ''))) {
-      e.preventDefault(); search.focus();
+  if(best) return best;
+  if(rw <= 40 && rh <= 40) return rw + ":" + rh;
+  return real.toFixed(2) + ":1";
+}
+/* ============================================================
+   FIT BUTTON (Shaka)
+   ============================================================ */
+function injectFitButton(container, vid){
+  const panel = container.querySelector(".shaka-controls-button-panel");
+  if(!panel) return false;
+  if(panel.querySelector(".sp-fit-btn")) return true;
+  const anchor = panel.querySelector(".shaka-fullscreen-button");
+  const FITS = ["contain","fill","cover"];
+  const FIT_LABELS = {contain:"Fit", fill:"Fill", cover:"Zoom"};
+  let fitIdx = 0;
+  const fitBtn = document.createElement("button");
+  fitBtn.className = "sp-btn sp-fit-btn";
+  fitBtn.title = "Video Fit: Fit";
+  fitBtn.setAttribute("aria-label", "Cycle Video Fit Mode");
+  fitBtn.innerHTML = '<span class="fit-pill">-</span>';
+  if(anchor) panel.insertBefore(fitBtn, anchor);
+  else panel.appendChild(fitBtn);
+  let currentRatio = "-";
+  function applyFit(i){
+    fitIdx = i;
+    const m = FITS[i];
+    vid.classList.remove("mode-fill","mode-cover");
+    if(m === "fill") vid.classList.add("mode-fill");
+    if(m === "cover") vid.classList.add("mode-cover");
+    fitBtn.classList.remove("mode-fill","mode-cover");
+    if(m !== "contain") fitBtn.classList.add("mode-" + m);
+    fitBtn.title = "Video Fit: " + FIT_LABELS[m];
+    const pill = fitBtn.querySelector(".fit-pill");
+    if(pill) pill.textContent = m === "contain" ? currentRatio : FIT_LABELS[m];
+  }
+  fitBtn.addEventListener("click", (e) => { e.stopPropagation(); applyFit((fitIdx + 1) % FITS.length); });
+  ["fullscreenchange","webkitfullscreenchange"].forEach(ev => {
+    document.addEventListener(ev, () => {
+      if(!document.fullscreenElement && !document.webkitFullscreenElement) applyFit(0);
+    });
+  });
+  let ratioTries = 0;
+  function updateRatio(){
+    const pill = fitBtn.querySelector(".fit-pill");
+    if(!pill) return;
+    if(vid.videoWidth > 0){
+      currentRatio = ratioLabel(vid.videoWidth, vid.videoHeight);
+      if(FITS[fitIdx] === "contain") pill.textContent = currentRatio;
+      ratioTries = 0;
+    } else if(ratioTries < 15){
+      ratioTries++;
+      setTimeout(updateRatio, 700);
     }
-    if (e.key === 'Escape' && tgPopupVisible()) { hideTgPopup(); return; }
-    if (e.key === 'Escape' && document.body.classList.contains('player-mode')) exitPlayerMode(true);
+  }
+  vid.addEventListener("loadedmetadata", () => { ratioTries = 0; updateRatio(); });
+  vid.addEventListener("resize", updateRatio);
+  vid.addEventListener("timeupdate", function onFirst(){ vid.removeEventListener("timeupdate", onFirst); updateRatio(); });
+  updateRatio();
+  return true;
+}
+
+/* ============================================================
+   SHAKA CONFIG
+   ============================================================ */
+function buildCfg(){
+  const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const effMaxH = thermalApplied && mobile ? Math.min(PROF.maxH, 720) : PROF.maxH;
+  const restr = {};
+  if(!restrictionsRelaxed){
+    if(effMaxH < 1080) restr.maxHeight = effMaxH;
+    if(PROF.maxBw > 0) restr.maxBandwidth = PROF.maxBw;
+  }
+  return {
+    manifest:{ defaultPresentationDelay:4, retryParameters:{ maxAttempts:5, baseDelay:500, backoffFactor:2, fuzzFactor:.5, timeout:30000 } },
+    streaming:{ lowLatencyMode:false, bufferingGoal:PROF.buf, rebufferingGoal:PROF.reBuf, bufferBehind:PROF.behind, safeSeekOffset:4, stallEnabled:true, stallThreshold:1, stallSkip:.3, inaccurateManifestTolerance:0, retryParameters:{ maxAttempts:5, baseDelay:500, backoffFactor:2, fuzzFactor:.5, timeout:30000 } },
+    abr:{ enabled:true, defaultBandwidthEstimate:PROF.bwEst, switchInterval:4, restrictions:restr }
+  };
+}
+
+/* ============================================================
+   DESTROY
+   ============================================================ */
+async function destroyPlayer(){
+  if(stallTmr){ clearTimeout(stallTmr); stallTmr = null; }
+  if(thermalTimer){ clearInterval(thermalTimer); thermalTimer = null; }
+  if(jwInstance){ try{ jwInstance.remove(); }catch(e){} jwInstance = null; }
+  if(overlay){ try{ overlay.destroy(); }catch(e){} overlay = null; }
+  if(player){ try{ await player.destroy(); }catch(e){} player = null; }
+  const c = $("player-container");
+  if(c) c.innerHTML = "";
+  currentStreamInfo = null;
+  sessionStart = 0; thermalApplied = false; restrictionsRelaxed = false;
+  refreshing = false; retries = 0; edgeTried = false; started = false;
+  jwFitMode = 0;
+}
+
+async function stopPlayback(){
+  playbackToken++;
+  await destroyPlayer();
+}
+
+/* ============================================================
+   JW PLAYER (HLS)
+   ============================================================ */
+async function mountJWPlayer(record, token){
+  if(!window.jwplayer){
+    $("player-container").innerHTML = `<div class="screen-msg">HLS player failed to load. Check your connection and retry.</div>`;
+    return;
+  }
+  const container = $("player-container");
+  container.innerHTML = "";
+  const root = document.createElement("div");
+  root.id = "jw-root";
+  container.appendChild(root);
+  const statusEl = document.createElement("div");
+  statusEl.id = "status";
+  container.appendChild(statusEl);
+  const loadEl = makeLoadingEl();
+  container.appendChild(loadEl);
+  jwInstance = window.jwplayer(root);
+  toast("Loading Stream...", "warn", 0);
+  jwInstance.setup({
+    file: record.link, autostart: true, mute: true,
+    primary: "html5", hlshtml: true,
+    width: "100%", height: "100%",
+    crossorigin: "anonymous",
+    stretching: "uniform",
+    playbackRateControls: false,
+    displaytitle: false
   });
-  // Category pills (delegated)
-  $('#category-pills').addEventListener('click', function (e) {
-    var btn = e.target.closest('.pill'); if (!btn) return;
-    state.category = btn.getAttribute('data-cat') || 'All';
-    renderAll();
+
+  jwInstance.on("ready", () => {
+    if(token !== playbackToken) return;
+    loadEl.hidden = true;
+    toast("Ready - Tap To Play", "ok", 5000);
+    try{
+      const fitSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg>`;
+      const fitIcon = "data:image/svg+xml," + encodeURIComponent(fitSvg);
+      jwInstance.addButton(fitIcon, "Fit", cycleJwFit, "sp-jw-fit");
+    }catch(e){}
   });
-  // Sort
-  $('#sort-select').addEventListener('change', function (e) { state.sort = e.target.value; renderGrid(); });
-  // Favourites-only toggle
-  $('#fav-toggle').addEventListener('click', function () {
-    state.favOnly = !state.favOnly;
-    this.classList.toggle('on', state.favOnly);
-    this.setAttribute('aria-pressed', String(state.favOnly));
-    renderGrid();
+
+  jwInstance.on("play", () => {
+    if(token !== playbackToken) return;
+    started = true;
+    retries = 0;
+    toast("Live", "live", 3000);
+    showPlayerTGPopup();
   });
-  // Grid delegation: favourite toggle + card open
-  $('#channel-grid').addEventListener('click', function (e) {
-    var favBtn = e.target.closest('[data-fav]');
-    if (favBtn) { e.preventDefault(); e.stopPropagation(); toggleFav(favBtn.getAttribute('data-fav')); return; }
-    var card = e.target.closest('.card[data-id]');
-    if (card) enterPlayerMode(card.getAttribute('data-id'));
+
+  jwInstance.on("buffer", () => {
+    if(token !== playbackToken) return;
+    toast("Buffering...", "warn", 0);
   });
-  $('#channel-grid').addEventListener('keydown', function (e) {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    var card = e.target.closest('.card[data-id]');
-    if (card && e.target === card) { e.preventDefault(); enterPlayerMode(card.getAttribute('data-id')); }
+
+  jwInstance.on("error", (e) => {
+    if(token !== playbackToken) return;
+    ERR("JW Player error:", e);
+    if(retries >= 5){ toast("Stream Unavailable. Please Try Again Later.", "err", 0); return; }
+    retries++;
+    const attempt = retries;
+    toast(`Reconnecting... (${attempt}/5)`, "warn", 0);
+    const delay = Math.min(1000 * Math.pow(2, attempt - 1), 8000);
+    setTimeout(() => {
+      if(token !== playbackToken) return;
+      try{ jwInstance.load(record.link); jwInstance.play(); }catch(err){ ERR("JW reload failed:", err); }
+    }, delay);
   });
-  // Trending stack (delegation; links still work with ?id=)
-  $('#stack-list').addEventListener('click', function (e) {
-    var a = e.target.closest('.stack-card[data-id]'); if (!a) return;
-    e.preventDefault(); enterPlayerMode(a.getAttribute('data-id'));
+
+  jwInstance.on("setupError", (e) => {
+    if(token !== playbackToken) return;
+    ERR("JW setupError:", e);
+    loadEl.hidden = true;
+    toast("Invalid stream URL", "err", 6000);
   });
-  // Telegram join popup
-  $('#tg-join-btn').addEventListener('click', hideTgPopup);
-  $('#tg-already-joined').addEventListener('click', function () {
-    hideTgPopup();
-    toast('Welcome aboard — enjoy the match!');
+
+  const unmuteOnce = () => { try{ jwInstance.setMute(false); }catch(_){} };
+  container.addEventListener("pointerdown", unmuteOnce, {capture:true, once:true});
+  container.addEventListener("click", unmuteOnce, {capture:true, once:true});
+  container.addEventListener("keydown", unmuteOnce, {capture:true, once:true});
+}
+
+function cycleJwFit(){
+  const modes  = ["uniform", "exactfit", "fill"];
+  const labels = ["Fit", "Fill", "Zoom"];
+  jwFitMode = (jwFitMode + 1) % modes.length;
+  try{ jwInstance.setStretching(modes[jwFitMode]); }catch(e){}
+  toast("Fit: " + labels[jwFitMode], "ok", 1500);
+}
+
+/* ============================================================
+   SHAKA PLAYER (DASH + ClearKey)
+   ============================================================ */
+async function mountShaka(record, token){
+  if(!window.shaka || !shaka.ui){
+    $("player-container").innerHTML = `<div class="screen-msg">DASH player failed to load. Check your connection and retry.</div>`;
+    return;
+  }
+  shaka.polyfill.installAll();
+  if(!shaka.Player.isBrowserSupported()) throw new Error("Browser not supported.");
+
+  const container = $("player-container");
+  container.innerHTML = "";
+
+  const vid = document.createElement("video");
+  vid.id = "shaka-video";
+  vid.playsInline = true;
+  vid.setAttribute("playsinline","");
+  vid.setAttribute("webkit-playsinline","");
+  vid.preload = "none";
+  vid.muted = true;
+  vid.autoplay = true;
+  container.appendChild(vid);
+
+  const statusEl = document.createElement("div");
+  statusEl.id = "status";
+  container.appendChild(statusEl);
+
+  const loadEl = makeLoadingEl();
+  container.appendChild(loadEl);
+
+  player = new shaka.Player();
+  await player.attach(vid);
+
+  overlay = new shaka.ui.Overlay(player, container, vid);
+  overlay.configure({
+    controlPanelElements: ["play_pause","mute","volume","time_and_duration","spacer","picture_in_picture","fullscreen","overflow_menu"],
+    seekBarColors: { base:"#828282", buffered:"#ffc336", played:"#1fc7ff" }
   });
-  $('#tg-popup').addEventListener('click', function (e) {
-    if (e.target.hasAttribute('data-tg-dismiss')) hideTgPopup();
+
+  let tries = 0;
+  (function tryInject(){
+    if(injectFitButton(container, vid)) return;
+    if(++tries < 10) setTimeout(tryInject, 150);
+  })();
+
+  const key = getClearKey(record);
+  if(key){ player.configure({ drm:{ clearKeys:{ [key.keyId]: key.key } } }); LOG("ClearKey applied:", key.keyId); }
+  else { player.configure({ drm: {} }); }
+
+  player.configure(buildCfg());
+
+  sessionStart = Date.now();
+  thermalTimer = setInterval(() => {
+    if(Date.now() - sessionStart < 60 * 60 * 1000) return;
+    clearInterval(thermalTimer); thermalTimer = null;
+    if(thermalApplied) return;
+    thermalApplied = true;
+    try{
+      player.configure("streaming.bufferBehind", 8);
+      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){
+        player.configure("abr.restrictions.maxHeight", Math.min(PROF.maxH, 720));
+      }
+    }catch(_){}
+  }, 60000);
+
+  const streamInfo = { url: record.link, type: record.type };
+  currentStreamInfo = streamInfo;
+
+  async function reload(){
+    if(refreshing || token !== playbackToken || !player) return;
+    if(retries >= 5){ toast("Stream Unavailable. Please Try Again Later.", "err", 0); return; }
+    refreshing = true; retries++;
+    const attempt = retries;
+    toast(`Reconnecting... (${attempt}/5)`, "warn", 0);
+    try{
+      player.configure(buildCfg());
+      await player.load(streamInfo.url);
+      if(token !== playbackToken){ refreshing = false; return; }
+      vid.play().catch(()=>{});
+      retries = 0; edgeTried = false;
+      toast("Live", "live", 4000);
+      refreshing = false;
+    }catch(err){
+      LOG(`Reload attempt ${attempt} failed:`, err);
+      const delay = Math.min(1000 * Math.pow(2, attempt - 1), 8000);
+      setTimeout(() => { refreshing = false; reload(); }, delay);
+    }
+  }
+
+  function goLiveEdge(){
+    if(refreshing || token !== playbackToken || !player) return;
+    try{ player.goToLive(); edgeTried = true; toast("Syncing To Live Edge...", "warn", 2000); }
+    catch(_){ reload(); }
+  }
+
+  const RECOVERABLE = [1001,1002,1003,4012,6006,6007,7000,7001,7002];
+  player.addEventListener("error", (ev) => {
+    if(token !== playbackToken) return;
+    const err = ev.detail, code = err && err.code;
+    if(code === 4014 && !restrictionsRelaxed){
+      restrictionsRelaxed = true; refreshing = true;
+      toast("Adjusting Quality...", "warn", 2000);
+      player.configure(buildCfg());
+      player.load(streamInfo.url)
+        .then(() => { if(token !== playbackToken) return; vid.play().catch(()=>{}); retries = 0; toast("Live","live",4000); })
+        .catch(() => { if(token === playbackToken) setTimeout(reload, 500); })
+        .finally(() => { refreshing = false; });
+      return;
+    }
+    if(RECOVERABLE.includes(code)){
+      toast("Buffering...", "warn", 0);
+      setTimeout(() => { if(!refreshing) reload(); }, 500);
+    } else {
+      toast(shakaErrStr(err), "err", 6000);
+    }
   });
-  // Player controls
-  $('#player-back').addEventListener('click', function () { exitPlayerMode(true); });
-  $('#player-share').addEventListener('click', shareCurrent);
-  $('#player-fullscreen').addEventListener('click', toggleFullscreen);
-  // Browser back/forward
-  window.addEventListener('popstate', function () {
-    var id = new URLSearchParams(window.location.search).get('id');
-    if (id) enterPlayerMode(id, false); else exitPlayerMode(false);
+
+  vid.addEventListener("waiting", () => {
+    if(stallTmr) return;
+    toast("Buffering...", "warn", 0);
+    if(!started || refreshing) return;
+    stallTmr = setTimeout(() => {
+      stallTmr = null;
+      if(!edgeTried) goLiveEdge(); else reload();
+    }, 5000);
   });
-  // Logo click → reload the current page instead of navigating home
-  var brand = $('#brand-home');
-  if (brand) {
-    brand.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.location.reload();
+  vid.addEventListener("stalled", () => {
+    if(!stallTmr) vid.dispatchEvent(new Event("waiting"));
+  });
+
+  vid.addEventListener("playing", () => {
+    started = true;
+    if(stallTmr){ clearTimeout(stallTmr); stallTmr = null; }
+    if(!refreshing) toast("Live", "live", 3000);
+    showPlayerTGPopup();
+  });
+
+  vid.addEventListener("error", () => {
+    if(refreshing) return;
+    toast("Buffering...", "warn", 0);
+    setTimeout(() => { if(!refreshing) reload(); }, 500);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if(!document.hidden){
+      setTimeout(() => { if(started && vid.paused && !refreshing) vid.play().catch(()=>{}); }, 400);
+    }
+  });
+
+  const unmuteOnce = () => { vid.muted = false; };
+  container.addEventListener("pointerdown", unmuteOnce, {capture:true, once:true});
+  container.addEventListener("click", unmuteOnce, {capture:true, once:true});
+  container.addEventListener("keydown", unmuteOnce, {capture:true, once:true});
+
+  const netConn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if(netConn){
+    netConn.addEventListener("change", () => {
+      if(!player || restrictionsRelaxed) return;
+      const t = netConn.effectiveType || "4g";
+      const h = (t === "slow-2g" || t === "2g") ? 240 : t === "3g" ? 480 : PROF.maxH;
+      try{ player.configure("abr.restrictions.maxHeight", h); }catch(_){}
+      if(h < PROF.maxH) toast("Slow Network - Reducing Quality", "warn", 3000);
     });
   }
-  // Mobile nav
-  var toggle = $('#nav-toggle');
-  toggle.addEventListener('click', function () {
-    var nav = $('.nav');
-    var open = nav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(open));
-  });
-  $$('#nav-links a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function () { $('.nav').classList.remove('open'); });
-  });
-  // Footer year
-  $('#yr').textContent = new Date().getFullYear();
-}
 
-/* ---------- Clock ---------- */
-function startClock() {
-  var el = $('#nav-clock');
-  function tick() {
-    var d = new Date();
-    var p = function (n) { return String(n).padStart(2, '0'); };
-    el.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  if("wakeLock" in navigator){ navigator.wakeLock.request("screen").catch(()=>{}); }
+
+  try{
+    toast("Loading Stream...", "warn", 0);
+    await player.load(streamInfo.url);
+    if(token !== playbackToken) return;
+    loadEl.hidden = true;
+    toast("Ready - Tap To Play", "ok", 5000);
+    vid.muted = true;
+    vid.play().catch(() => LOG("Autoplay blocked"));
+  }catch(e){
+    ERR("Initial load failed:", e);
+    loadEl.hidden = true;
+    toast("Connection Error - Retrying...", "warn", 0);
+    setTimeout(reload, 800);
   }
-  tick(); setInterval(tick, 1000);
 }
 
-/* ---------- Reveal on scroll ---------- */
-function initReveal() {
-  var els = $$('.reveal');
-  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(function (el) { io.observe(el); });
+/* =====================================================================================================================
+   DISPATCH
+   ============================================================ */
+async function mountPlayer(record, token){
+  if(record.type === "HLS"){ LOG("Mounting JW Player for HLS:", record.link); return mountJWPlayer(record, token); }
+  LOG("Mounting Shaka for DASH:", record.link);
+  return mountShaka(record, token);
 }
 
-/* ---------- Boot ---------- */
-document.addEventListener('DOMContentLoaded', function () {
-  bindEvents();
-  startClock();
-  initReveal();
-  renderSkeletons();
+async function playRecord(record, index){
+  if(!record) return;
+  resetTgPopup();
+  document.querySelectorAll("[data-player-stream]").forEach((btn, i) => btn.classList.toggle("active", i === index));
+  const token = ++playbackToken;
+  await destroyPlayer();
+  const rawUrl = String(record.link || "").split("|")[0].trim();
+  if(!/^https?:\/\//i.test(rawUrl)){
+    $("player-container").innerHTML = `<div class="screen-msg">Invalid stream link.</div>`;
+    return;
+  }
+  try{
+    await mountPlayer({...record, link: rawUrl}, token);
+  }catch(error){
+    if(token === playbackToken){
+      $("player-container").innerHTML = `<div class="screen-msg">Could not play this stream.<small>${esc(error.message || "")}</small></div>`;
+      ERR("Playback error:", error);
+    }
+  }
+}
+function renderPlayerStreams(activeIndex){
+  const box = $("streams");
+  if(!state.currentStreams.length){
+    box.innerHTML = `<div class="state" style="padding:40px 20px"><p>No streams were found for this event.</p></div>`;
+    return;
+  }
+  box.innerHTML = state.currentStreams.map((s, i) =>
+    `<button class="stream-btn ${i === activeIndex ? "active" : ""}" data-player-stream="${i}" type="button">
+       <span class="title">${esc(s.title)}</span>
+       <span class="tags"><span class="type-badge ${s.type.toLowerCase()}">${esc(s.type)}</span></span>
+     </button>`
+  ).join("");
+}
 
-  loadChannels().then(function (list) {
-    state.channels = dedupe(list);
-    renderTicker();
-    renderStack();
-    renderAll();
-    // Deep link: ?id=...
-    var id = new URLSearchParams(window.location.search).get('id');
-    if (id) enterPlayerMode(id, false);
-  }).catch(function (err) {
-    $('#channel-grid').innerHTML =
-      '<div class="error-card"><h2>Signal Lost</h2>' +
-      '<p>We could not load the channel list.<br>' + esc((err && err.message) || err) + '</p>' +
-      '<button class="btn btn-primary" id="retry-load">Retry</button></div>';
-    $('#retry-load').addEventListener('click', function () { window.location.reload(); });
-  });
+/* ============================================================
+   ROTATION
+   ============================================================ */
+
+
+/* ============================================================
+   DOM EVENTS
+   ============================================================ */
+$("list").addEventListener("click", e => {
+  const card = e.target.closest("[data-watch-event]");
+  if(!card) return;
+  location.hash = `#watch?id=${encodeURIComponent(card.dataset.watchEvent)}&stream=0`;
 });
+
+$("sports").addEventListener("click", e => {
+  const btn = e.target.closest("[data-sport]"); if(!btn) return;
+  state.sport = btn.dataset.sport; renderHub();
+});
+
+$("tabs").addEventListener("click", e => {
+  const btn = e.target.closest("[data-tab]"); if(!btn) return;
+  state.tab = btn.dataset.tab; renderHub();
+});
+
+$("streams").addEventListener("click", e => {
+  const btn = e.target.closest("[data-player-stream]");
+  if(!btn || !state.currentEvent) return;
+  const index = Number(btn.dataset.playerStream);
+  if(!state.currentStreams[index]) return;
+  state.currentIndex = index;
+  history.replaceState(null, "", `#watch?id=${encodeURIComponent(state.currentEvent.id)}&stream=${index}`);
+  playRecord(state.currentStreams[index], index);
+});
+
+$("backHub").onclick = () => { location.hash = "#/"; };
+window.addEventListener("hashchange", route);
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+loadData();
+setInterval(() => { if(window.__booted) renderHub(); }, 30000);
+setInterval(() => { if(window.__booted && !location.hash.includes("watch")) loadData(); }, 120000);
 </script>
+
 </body>
 </html>
